@@ -1,0 +1,71 @@
+﻿<Page x:Class="Computer_service.Views.AuthorizationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Computer_service.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AuthorizationPage">
+
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#1b1b1b" Offset="1" />
+                <GradientStop Color="#212121" Offset="0" />
+            </LinearGradientBrush>
+        </Grid.Background>
+        <StackPanel Orientation="Horizontal" 
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+          
+            <StackPanel>
+                <TextBlock Text="Авторизация"
+                       Foreground="White"
+                       FontSize="25"
+                       HorizontalAlignment="Center"
+                       Margin="0 0 0 20"/>
+                <StackPanel Orientation="Horizontal"
+                        Margin="0 0 0 10">
+                    <TextBlock Text="Логин"
+                           FontSize="18"/>
+                    <TextBox Width="200" 
+                         Margin="19.3 0 0 0"
+                         x:Name="LoginTextBox"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Пароль"
+                           FontSize="18"/>
+                    <TextBox Width="200" Margin="8 0 0 0"
+                             x:Name="PasswordTextBox"
+                             Visibility="Collapsed"/>
+                    <PasswordBox Width="200" Margin="8 0 0 0"
+                            x:Name="PasswordPasswordBox"
+                             Visibility="Visible"/>
+                </StackPanel>
+
+                <CheckBox Content="Показать пароль"
+                      Margin="0 10 0 0"
+                      x:Name="ShowPasswordCheckBox"
+                      Click="ShowPasswordCheckBox_Click">
+                    <CheckBox.LayoutTransform>
+                        <ScaleTransform ScaleX="1.5" ScaleY="1.5"/>
+                    </CheckBox.LayoutTransform>
+                </CheckBox>
+
+                <Button Background="White" 
+                    Margin="0 10 0 0" Click="ButtonEnter_Click">
+                    <TextBlock Text="Войти" 
+                           Foreground="Black"
+                           FontSize="18"/>
+                </Button>
+            </StackPanel>
+            <Image Source="\Images\logo.png"
+                   Width="100"
+                   Height="100"
+                   Margin="20 20 0 0"/>
+        </StackPanel>
+      
+    </Grid>
+</Page>
