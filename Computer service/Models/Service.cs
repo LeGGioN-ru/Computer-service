@@ -17,17 +17,15 @@ namespace Computer_service.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Service()
         {
-            this.Table_part = new HashSet<Table_part>();
+            this.TB_Services = new HashSet<TB_Services>();
         }
     
         public int Service_id { get; set; }
         public string Service_name { get; set; }
         public string Service_description { get; set; }
         public int Service_price { get; set; }
-        public int Technic_type_id { get; set; }
     
-        public virtual Technic_tupe Technic_tupe { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Table_part> Table_part { get; set; }
+        public virtual ICollection<TB_Services> TB_Services { get; set; }
     }
 }

@@ -1,12 +1,12 @@
-﻿<Page x:Class="Computer_service.Views.Pages.TemplateAddEditPage"
+﻿<Page x:Class="Computer_service.Views.Pages.Contract1.ContractEditPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Computer_service.Views.Pages"
+      xmlns:local="clr-namespace:Computer_service.Views.Pages.Contract1"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="TemplateAddEditPage">
+      Title="ContractEditPage">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -30,60 +30,43 @@
                    Margin="0 10 0 10"/>
             <StackPanel Orientation="Horizontal"
                         Margin="0 0 0 10">
-                <TextBlock Text="Атрибут"
-                           Margin="0 0 10 0"
-                           Foreground="White"/>
-                <TextBox Width="150"/>
+                <TextBlock Text="Клиент"
+                           Margin="0 0 26 0"
+                           Foreground="White"
+                           VerticalAlignment="Center"/>
+                <ComboBox Width="150"
+                          DisplayMemberPath="Surname_client"
+                          x:Name="ClientCombobBox"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                         Margin="0 0 0 10">
-                <TextBlock Text="Атрибут"
-                           Margin="0 0 10 0"
-                           Foreground="White"/>
-                <TextBox Width="150"/>
+                <TextBlock Text="Работник"
+                           Margin="0 0 13 0"
+                           Foreground="White"
+                           VerticalAlignment="Center"/>
+                <ComboBox Width="150"
+                          DisplayMemberPath="Employee_surname"
+                          x:Name="EmployeeComboBox"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                         Margin="0 0 0 10">
-                <TextBlock Text="Атрибут"
-                           Margin="0 0 10 0"
+                <TextBlock Text="Дата"
+                           Margin="0 0 39.4 0"
+                           VerticalAlignment="Center"
                            Foreground="White"/>
-                <TextBox Width="150"/>
+                <DatePicker Width="150"
+                            VerticalAlignment="Center"
+                            x:Name="DatePicker"
+                            SelectedDate="01.01.23"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                         Margin="0 0 0 10">
-                <TextBlock Text="Атрибут"
+                <TextBlock Text="Описание"
                            Margin="0 0 10 0"
                            Foreground="White"/>
-                <TextBox Width="150"/>
+                <TextBox Width="150" x:Name="DescriptionTextBox"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal"
-                        Margin="0 0 0 10">
-                <TextBlock Text="Атрибут"
-                           Margin="0 0 10 0"
-                           Foreground="White"/>
-                <TextBox Width="150"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal"
-                        Margin="0 0 0 10">
-                <TextBlock Text="Атрибут"
-                           Margin="0 0 10 0"
-                           Foreground="White"/>
-                <TextBox Width="150"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal"
-                        Margin="0 0 0 10">
-                <TextBlock Text="Атрибут"
-                           Margin="0 0 10 0"
-                           Foreground="White"/>
-                <TextBox Width="150"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal"
-                        Margin="0 0 0 10">
-                <TextBlock Text="Атрибут"
-                           Margin="0 0 10 0"
-                           Foreground="White"/>
-                <TextBox Width="150"/>
-            </StackPanel>
+           
         </StackPanel>
 
         <StackPanel Orientation="Horizontal"
@@ -93,14 +76,15 @@
             <Button Background="White"
                     Width="200"
                     Height="30"
-                    Margin="0 0 10 0">
+                    Margin="0 0 10 0"
+                    x:Name="EditButton" Click="EditButton_Click">
                 <TextBlock Text="Добавить"
                            Foreground="Black"/>
             </Button>
             <Button Background="White"
                     Width="200"
                     Height="30"
-                      Margin="10 0 0 0">
+                      Margin="10 0 0 0" Click="ButtonCancel_Click">
                 <TextBlock Text="Отмена"
                            Foreground="Black"/>
             </Button>

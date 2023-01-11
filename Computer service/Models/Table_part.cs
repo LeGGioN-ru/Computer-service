@@ -14,13 +14,19 @@ namespace Computer_service.Models
     
     public partial class Table_part
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Table_part()
+        {
+            this.TB_Services = new HashSet<TB_Services>();
+        }
+    
         public int Entry_number { get; set; }
-        public int Service_id { get; set; }
         public int Technic_id { get; set; }
         public int Contract_id { get; set; }
     
         public virtual Contract Contract { get; set; }
-        public virtual Service Service { get; set; }
         public virtual Technic Technic { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TB_Services> TB_Services { get; set; }
     }
 }

@@ -19,7 +19,7 @@ namespace Computer_service.Models
         {
             this.CPU = new HashSet<CPU>();
             this.GPU = new HashSet<GPU>();
-            this.Ìotherboard = new HashSet<Ìotherboard>();
+            this.Motherboard = new HashSet<Motherboard>();
             this.PSU = new HashSet<PSU>();
             this.RAM = new HashSet<RAM>();
         }
@@ -32,7 +32,7 @@ namespace Computer_service.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GPU> GPU { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Ìotherboard> Ìotherboard { get; set; }
+        public virtual ICollection<Motherboard> Motherboard { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PSU> PSU { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -12,18 +12,13 @@ namespace Computer_service.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Technic_tupe
+    public partial class TB_Services
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Technic_tupe()
-        {
-            this.Service = new HashSet<Service>();
-        }
+        public int TB_Services_Id { get; set; }
+        public int Service_id { get; set; }
+        public int Entry_number { get; set; }
     
-        public int Technic_type_id { get; set; }
-        public string Name_tt { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Service> Service { get; set; }
+        public virtual Service Service { get; set; }
+        public virtual Table_part Table_part { get; set; }
     }
 }

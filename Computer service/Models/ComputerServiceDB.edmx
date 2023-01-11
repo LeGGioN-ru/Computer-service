@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище ComputerServicesDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище ComputerServiceDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Brand">
           <Key>
             <PropertyRef Name="Brand_id" />
@@ -50,7 +50,9 @@
           <Property Name="Employee_surname" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Employee_patronymic" Type="nvarchar" MaxLength="50" />
           <Property Name="Phone_number_employee" Type="nvarchar" MaxLength="30" Nullable="false" />
-          <Property Name="Employee_INN" Type="int" Nullable="false" />
+          <Property Name="Employee_INN" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="GPU">
           <Key>
@@ -60,24 +62,34 @@
           <Property Name="Name_GPU" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Brand_id" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="Ìotherboard">
+        <EntityType Name="Motherboard">
           <Key>
             <PropertyRef Name="Motherboard_id" />
           </Key>
           <Property Name="Motherboard_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Chipset" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Socket" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Motherboard_brand" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Brand_id" Type="int" Nullable="false" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "ComputerServicesDB.dbo.Organization" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+предупреждение 6002: В таблице или представлении "ComputerServiceDB.dbo.Organization" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="Organization">
+          <Key>
+            <PropertyRef Name="Organization_type" />
+            <PropertyRef Name="Organization_name" />
+            <PropertyRef Name="Organization_address" />
+            <PropertyRef Name="Organization_discription" />
+          </Key>
+          <Property Name="Organization_type" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Organization_name" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Organization_address" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Organization_discription" Type="nvarchar" MaxLength="4000" Nullable="false" />
+        </EntityType>
         <EntityType Name="PSU">
           <Key>
             <PropertyRef Name="PSU_id" />
           </Key>
           <Property Name="PSU_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PSU_brand" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Power_PSU" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Brand_id" Type="int" Nullable="false" />
         </EntityType>
@@ -86,8 +98,7 @@
             <PropertyRef Name="RAM_id" />
           </Key>
           <Property Name="RAM_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="RAM_name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="RAM_volume" Type="int" Nullable="false" />
+          <Property Name="RAM_volume" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="RAM_units" Type="int" Nullable="false" />
           <Property Name="Brand_id" Type="int" Nullable="false" />
         </EntityType>
@@ -99,16 +110,22 @@
           <Property Name="Service_name" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="Service_description" Type="nvarchar" MaxLength="800" />
           <Property Name="Service_price" Type="int" Nullable="false" />
-          <Property Name="Technic_type_id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Table_part">
           <Key>
             <PropertyRef Name="Entry_number" />
           </Key>
-          <Property Name="Entry_number" Type="int" Nullable="false" />
-          <Property Name="Service_id" Type="int" Nullable="false" />
+          <Property Name="Entry_number" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Technic_id" Type="int" Nullable="false" />
           <Property Name="Contract_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TB_Services">
+          <Key>
+            <PropertyRef Name="TB_Services_Id" />
+          </Key>
+          <Property Name="TB_Services_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Service_id" Type="int" Nullable="false" />
+          <Property Name="Entry_number" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Technic">
           <Key>
@@ -122,13 +139,6 @@
           <Property Name="RAM_id" Type="int" Nullable="false" />
           <Property Name="GPU_id" Type="int" Nullable="false" />
           <Property Name="Technic_type_id" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Technic_tupe">
-          <Key>
-            <PropertyRef Name="Technic_type_id" />
-          </Key>
-          <Property Name="Technic_type_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name_tt" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="Technic_type">
           <Key>
@@ -185,14 +195,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ìotherboa__Brand__6E01572D">
+        <Association Name="FK__Motherboa__Brand__6E01572D">
           <End Role="Brand" Type="Self.Brand" Multiplicity="1" />
-          <End Role="Ìotherboard" Type="Self.Ìotherboard" Multiplicity="*" />
+          <End Role="Motherboard" Type="Self.Motherboard" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Brand">
               <PropertyRef Name="Brand_id" />
             </Principal>
-            <Dependent Role="Ìotherboard">
+            <Dependent Role="Motherboard">
               <PropertyRef Name="Brand_id" />
             </Dependent>
           </ReferentialConstraint>
@@ -221,18 +231,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Service__Technic__6D0D32F4">
-          <End Role="Technic_tupe" Type="Self.Technic_tupe" Multiplicity="1" />
-          <End Role="Service" Type="Self.Service" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Technic_tupe">
-              <PropertyRef Name="Technic_type_id" />
-            </Principal>
-            <Dependent Role="Service">
-              <PropertyRef Name="Technic_type_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Table_par__Contr__656C112C">
           <End Role="Contract" Type="Self.Contract" Multiplicity="1" />
           <End Role="Table_part" Type="Self.Table_part" Multiplicity="*" />
@@ -242,18 +240,6 @@
             </Principal>
             <Dependent Role="Table_part">
               <PropertyRef Name="Contract_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Table_par__Servi__6477ECF3">
-          <End Role="Service" Type="Self.Service" Multiplicity="1" />
-          <End Role="Table_part" Type="Self.Table_part" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Service">
-              <PropertyRef Name="Service_id" />
-            </Principal>
-            <Dependent Role="Table_part">
-              <PropertyRef Name="Service_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -269,7 +255,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Technic__CPU_id__68487DD7">
+        <Association Name="FK__TB_Servic__Entry__68487DD7">
+          <End Role="Table_part" Type="Self.Table_part" Multiplicity="1" />
+          <End Role="TB_Services" Type="Self.TB_Services" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_part">
+              <PropertyRef Name="Entry_number" />
+            </Principal>
+            <Dependent Role="TB_Services">
+              <PropertyRef Name="Entry_number" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_Servic__Servi__6477ECF3">
+          <End Role="Service" Type="Self.Service" Multiplicity="1" />
+          <End Role="TB_Services" Type="Self.TB_Services" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="Service_id" />
+            </Principal>
+            <Dependent Role="TB_Services">
+              <PropertyRef Name="Service_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Technic__CPU_id__693CA210">
           <End Role="CPU" Type="Self.CPU" Multiplicity="1" />
           <End Role="Technic" Type="Self.Technic" Multiplicity="*" />
           <ReferentialConstraint>
@@ -281,7 +291,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Technic__GPU_id__6C190EBB">
+        <Association Name="FK__Technic__GPU_id__6D0D32F4">
           <End Role="GPU" Type="Self.GPU" Multiplicity="1" />
           <End Role="Technic" Type="Self.Technic" Multiplicity="*" />
           <ReferentialConstraint>
@@ -293,11 +303,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Technic__Motherb__693CA210">
-          <End Role="Ìotherboard" Type="Self.Ìotherboard" Multiplicity="1" />
+        <Association Name="FK__Technic__Motherb__6A30C649">
+          <End Role="Motherboard" Type="Self.Motherboard" Multiplicity="1" />
           <End Role="Technic" Type="Self.Technic" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Ìotherboard">
+            <Principal Role="Motherboard">
               <PropertyRef Name="Motherboard_id" />
             </Principal>
             <Dependent Role="Technic">
@@ -305,7 +315,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Technic__PSU_id__6A30C649">
+        <Association Name="FK__Technic__PSU_id__6B24EA82">
           <End Role="PSU" Type="Self.PSU" Multiplicity="1" />
           <End Role="Technic" Type="Self.Technic" Multiplicity="*" />
           <ReferentialConstraint>
@@ -317,7 +327,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Technic__RAM_id__6B24EA82">
+        <Association Name="FK__Technic__RAM_id__6C190EBB">
           <End Role="RAM" Type="Self.RAM" Multiplicity="1" />
           <End Role="Technic" Type="Self.Technic" Multiplicity="*" />
           <ReferentialConstraint>
@@ -341,21 +351,29 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Хранилище ComputerServicesDBModelContainer">
+        <EntityContainer Name="Хранилище ComputerServiceDBModelContainer">
           <EntitySet Name="Brand" EntityType="Self.Brand" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Contract" EntityType="Self.Contract" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CPU" EntityType="Self.CPU" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GPU" EntityType="Self.GPU" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Ìotherboard" EntityType="Self.Ìotherboard" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Motherboard" EntityType="Self.Motherboard" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PSU" EntityType="Self.PSU" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RAM" EntityType="Self.RAM" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Table_part" EntityType="Self.Table_part" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_Services" EntityType="Self.TB_Services" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Technic" EntityType="Self.Technic" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Technic_tupe" EntityType="Self.Technic_tupe" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Technic_type" EntityType="Self.Technic_type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Organization" EntityType="Self.Organization" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Organization].[Organization_type] AS [Organization_type], 
+    [Organization].[Organization_name] AS [Organization_name], 
+    [Organization].[Organization_address] AS [Organization_address], 
+    [Organization].[Organization_discription] AS [Organization_discription]
+    FROM [dbo].[Organization] AS [Organization]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK__Contract__Employ__6754599E" Association="Self.FK__Contract__Employ__6754599E">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="Contract" EntitySet="Contract" />
@@ -372,9 +390,9 @@
             <End Role="Brand" EntitySet="Brand" />
             <End Role="GPU" EntitySet="GPU" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ìotherboa__Brand__6E01572D" Association="Self.FK__Ìotherboa__Brand__6E01572D">
+          <AssociationSet Name="FK__Motherboa__Brand__6E01572D" Association="Self.FK__Motherboa__Brand__6E01572D">
             <End Role="Brand" EntitySet="Brand" />
-            <End Role="Ìotherboard" EntitySet="Ìotherboard" />
+            <End Role="Motherboard" EntitySet="Motherboard" />
           </AssociationSet>
           <AssociationSet Name="FK__PSU__Brand_id__6EF57B66" Association="Self.FK__PSU__Brand_id__6EF57B66">
             <End Role="Brand" EntitySet="Brand" />
@@ -384,39 +402,39 @@
             <End Role="Brand" EntitySet="Brand" />
             <End Role="RAM" EntitySet="RAM" />
           </AssociationSet>
-          <AssociationSet Name="FK__Service__Technic__6D0D32F4" Association="Self.FK__Service__Technic__6D0D32F4">
-            <End Role="Technic_tupe" EntitySet="Technic_tupe" />
-            <End Role="Service" EntitySet="Service" />
-          </AssociationSet>
           <AssociationSet Name="FK__Table_par__Contr__656C112C" Association="Self.FK__Table_par__Contr__656C112C">
             <End Role="Contract" EntitySet="Contract" />
-            <End Role="Table_part" EntitySet="Table_part" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Table_par__Servi__6477ECF3" Association="Self.FK__Table_par__Servi__6477ECF3">
-            <End Role="Service" EntitySet="Service" />
             <End Role="Table_part" EntitySet="Table_part" />
           </AssociationSet>
           <AssociationSet Name="FK__Table_par__Techn__66603565" Association="Self.FK__Table_par__Techn__66603565">
             <End Role="Technic" EntitySet="Technic" />
             <End Role="Table_part" EntitySet="Table_part" />
           </AssociationSet>
-          <AssociationSet Name="FK__Technic__CPU_id__68487DD7" Association="Self.FK__Technic__CPU_id__68487DD7">
+          <AssociationSet Name="FK__TB_Servic__Entry__68487DD7" Association="Self.FK__TB_Servic__Entry__68487DD7">
+            <End Role="Table_part" EntitySet="Table_part" />
+            <End Role="TB_Services" EntitySet="TB_Services" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_Servic__Servi__6477ECF3" Association="Self.FK__TB_Servic__Servi__6477ECF3">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="TB_Services" EntitySet="TB_Services" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Technic__CPU_id__693CA210" Association="Self.FK__Technic__CPU_id__693CA210">
             <End Role="CPU" EntitySet="CPU" />
             <End Role="Technic" EntitySet="Technic" />
           </AssociationSet>
-          <AssociationSet Name="FK__Technic__GPU_id__6C190EBB" Association="Self.FK__Technic__GPU_id__6C190EBB">
+          <AssociationSet Name="FK__Technic__GPU_id__6D0D32F4" Association="Self.FK__Technic__GPU_id__6D0D32F4">
             <End Role="GPU" EntitySet="GPU" />
             <End Role="Technic" EntitySet="Technic" />
           </AssociationSet>
-          <AssociationSet Name="FK__Technic__Motherb__693CA210" Association="Self.FK__Technic__Motherb__693CA210">
-            <End Role="Ìotherboard" EntitySet="Ìotherboard" />
+          <AssociationSet Name="FK__Technic__Motherb__6A30C649" Association="Self.FK__Technic__Motherb__6A30C649">
+            <End Role="Motherboard" EntitySet="Motherboard" />
             <End Role="Technic" EntitySet="Technic" />
           </AssociationSet>
-          <AssociationSet Name="FK__Technic__PSU_id__6A30C649" Association="Self.FK__Technic__PSU_id__6A30C649">
+          <AssociationSet Name="FK__Technic__PSU_id__6B24EA82" Association="Self.FK__Technic__PSU_id__6B24EA82">
             <End Role="PSU" EntitySet="PSU" />
             <End Role="Technic" EntitySet="Technic" />
           </AssociationSet>
-          <AssociationSet Name="FK__Technic__RAM_id__6B24EA82" Association="Self.FK__Technic__RAM_id__6B24EA82">
+          <AssociationSet Name="FK__Technic__RAM_id__6C190EBB" Association="Self.FK__Technic__RAM_id__6C190EBB">
             <End Role="RAM" EntitySet="RAM" />
             <End Role="Technic" EntitySet="Technic" />
           </AssociationSet>
@@ -429,7 +447,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="ComputerServicesDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="ComputerServiceDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Brand">
           <Key>
             <PropertyRef Name="Brand_id" />
@@ -438,7 +456,7 @@
           <Property Name="Brand_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="CPU" Relationship="Self.FK__CPU__Brand_id__71D1E811" FromRole="Brand" ToRole="CPU" />
           <NavigationProperty Name="GPU" Relationship="Self.FK__GPU__Brand_id__70DDC3D8" FromRole="Brand" ToRole="GPU" />
-          <NavigationProperty Name="Ìotherboard" Relationship="Self.FK__Ìotherboa__Brand__6E01572D" FromRole="Brand" ToRole="Ìotherboard" />
+          <NavigationProperty Name="Motherboard" Relationship="Self.FK__Motherboa__Brand__6E01572D" FromRole="Brand" ToRole="Motherboard" />
           <NavigationProperty Name="PSU" Relationship="Self.FK__PSU__Brand_id__6EF57B66" FromRole="Brand" ToRole="PSU" />
           <NavigationProperty Name="RAM" Relationship="Self.FK__RAM__Brand_id__6FE99F9F" FromRole="Brand" ToRole="RAM" />
         </EntityType>
@@ -475,7 +493,7 @@
           <Property Name="Brand_id" Type="Int32" Nullable="false" />
           <Property Name="CPU_model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Brand" Relationship="Self.FK__CPU__Brand_id__71D1E811" FromRole="CPU" ToRole="Brand" />
-          <NavigationProperty Name="Technic" Relationship="Self.FK__Technic__CPU_id__68487DD7" FromRole="CPU" ToRole="Technic" />
+          <NavigationProperty Name="Technic" Relationship="Self.FK__Technic__CPU_id__693CA210" FromRole="CPU" ToRole="Technic" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -486,7 +504,9 @@
           <Property Name="Employee_surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Employee_patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Phone_number_employee" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Employee_INN" Type="Int32" Nullable="false" />
+          <Property Name="Employee_INN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Contract" Relationship="Self.FK__Contract__Employ__6754599E" FromRole="Employee" ToRole="Contract" />
         </EntityType>
         <EntityType Name="GPU">
@@ -497,42 +517,39 @@
           <Property Name="Name_GPU" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Brand_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Brand" Relationship="Self.FK__GPU__Brand_id__70DDC3D8" FromRole="GPU" ToRole="Brand" />
-          <NavigationProperty Name="Technic" Relationship="Self.FK__Technic__GPU_id__6C190EBB" FromRole="GPU" ToRole="Technic" />
+          <NavigationProperty Name="Technic" Relationship="Self.FK__Technic__GPU_id__6D0D32F4" FromRole="GPU" ToRole="Technic" />
         </EntityType>
-        <EntityType Name="Ìotherboard">
+        <EntityType Name="Motherboard">
           <Key>
             <PropertyRef Name="Motherboard_id" />
           </Key>
           <Property Name="Motherboard_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Chipset" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Socket" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Motherboard_brand" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Brand_id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Brand" Relationship="Self.FK__Ìotherboa__Brand__6E01572D" FromRole="Ìotherboard" ToRole="Brand" />
-          <NavigationProperty Name="Technic" Relationship="Self.FK__Technic__Motherb__693CA210" FromRole="Ìotherboard" ToRole="Technic" />
+          <NavigationProperty Name="Brand" Relationship="Self.FK__Motherboa__Brand__6E01572D" FromRole="Motherboard" ToRole="Brand" />
+          <NavigationProperty Name="Technic" Relationship="Self.FK__Technic__Motherb__6A30C649" FromRole="Motherboard" ToRole="Technic" />
         </EntityType>
         <EntityType Name="PSU">
           <Key>
             <PropertyRef Name="PSU_id" />
           </Key>
           <Property Name="PSU_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PSU_brand" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Power_PSU" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Brand_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Brand" Relationship="Self.FK__PSU__Brand_id__6EF57B66" FromRole="PSU" ToRole="Brand" />
-          <NavigationProperty Name="Technic" Relationship="Self.FK__Technic__PSU_id__6A30C649" FromRole="PSU" ToRole="Technic" />
+          <NavigationProperty Name="Technic" Relationship="Self.FK__Technic__PSU_id__6B24EA82" FromRole="PSU" ToRole="Technic" />
         </EntityType>
         <EntityType Name="RAM">
           <Key>
             <PropertyRef Name="RAM_id" />
           </Key>
           <Property Name="RAM_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RAM_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="RAM_volume" Type="Int32" Nullable="false" />
+          <Property Name="RAM_volume" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="RAM_units" Type="Int32" Nullable="false" />
           <Property Name="Brand_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Brand" Relationship="Self.FK__RAM__Brand_id__6FE99F9F" FromRole="RAM" ToRole="Brand" />
-          <NavigationProperty Name="Technic" Relationship="Self.FK__Technic__RAM_id__6B24EA82" FromRole="RAM" ToRole="Technic" />
+          <NavigationProperty Name="Technic" Relationship="Self.FK__Technic__RAM_id__6C190EBB" FromRole="RAM" ToRole="Technic" />
         </EntityType>
         <EntityType Name="Service">
           <Key>
@@ -542,21 +559,28 @@
           <Property Name="Service_name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Service_description" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
           <Property Name="Service_price" Type="Int32" Nullable="false" />
-          <Property Name="Technic_type_id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Technic_tupe" Relationship="Self.FK__Service__Technic__6D0D32F4" FromRole="Service" ToRole="Technic_tupe" />
-          <NavigationProperty Name="Table_part" Relationship="Self.FK__Table_par__Servi__6477ECF3" FromRole="Service" ToRole="Table_part" />
+          <NavigationProperty Name="TB_Services" Relationship="Self.FK__TB_Servic__Servi__6477ECF3" FromRole="Service" ToRole="TB_Services" />
         </EntityType>
         <EntityType Name="Table_part">
           <Key>
             <PropertyRef Name="Entry_number" />
           </Key>
-          <Property Name="Entry_number" Type="Int32" Nullable="false" />
-          <Property Name="Service_id" Type="Int32" Nullable="false" />
+          <Property Name="Entry_number" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Technic_id" Type="Int32" Nullable="false" />
           <Property Name="Contract_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Contract" Relationship="Self.FK__Table_par__Contr__656C112C" FromRole="Table_part" ToRole="Contract" />
-          <NavigationProperty Name="Service" Relationship="Self.FK__Table_par__Servi__6477ECF3" FromRole="Table_part" ToRole="Service" />
           <NavigationProperty Name="Technic" Relationship="Self.FK__Table_par__Techn__66603565" FromRole="Table_part" ToRole="Technic" />
+          <NavigationProperty Name="TB_Services" Relationship="Self.FK__TB_Servic__Entry__68487DD7" FromRole="Table_part" ToRole="TB_Services" />
+        </EntityType>
+        <EntityType Name="TB_Services">
+          <Key>
+            <PropertyRef Name="TB_Services_Id" />
+          </Key>
+          <Property Name="TB_Services_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Service_id" Type="Int32" Nullable="false" />
+          <Property Name="Entry_number" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Service" Relationship="Self.FK__TB_Servic__Servi__6477ECF3" FromRole="TB_Services" ToRole="Service" />
+          <NavigationProperty Name="Table_part" Relationship="Self.FK__TB_Servic__Entry__68487DD7" FromRole="TB_Services" ToRole="Table_part" />
         </EntityType>
         <EntityType Name="Technic">
           <Key>
@@ -570,21 +594,13 @@
           <Property Name="RAM_id" Type="Int32" Nullable="false" />
           <Property Name="GPU_id" Type="Int32" Nullable="false" />
           <Property Name="Technic_type_id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="CPU" Relationship="Self.FK__Technic__CPU_id__68487DD7" FromRole="Technic" ToRole="CPU" />
-          <NavigationProperty Name="GPU" Relationship="Self.FK__Technic__GPU_id__6C190EBB" FromRole="Technic" ToRole="GPU" />
-          <NavigationProperty Name="Ìotherboard" Relationship="Self.FK__Technic__Motherb__693CA210" FromRole="Technic" ToRole="Ìotherboard" />
-          <NavigationProperty Name="PSU" Relationship="Self.FK__Technic__PSU_id__6A30C649" FromRole="Technic" ToRole="PSU" />
-          <NavigationProperty Name="RAM" Relationship="Self.FK__Technic__RAM_id__6B24EA82" FromRole="Technic" ToRole="RAM" />
+          <NavigationProperty Name="CPU" Relationship="Self.FK__Technic__CPU_id__693CA210" FromRole="Technic" ToRole="CPU" />
+          <NavigationProperty Name="GPU" Relationship="Self.FK__Technic__GPU_id__6D0D32F4" FromRole="Technic" ToRole="GPU" />
+          <NavigationProperty Name="Motherboard" Relationship="Self.FK__Technic__Motherb__6A30C649" FromRole="Technic" ToRole="Motherboard" />
+          <NavigationProperty Name="PSU" Relationship="Self.FK__Technic__PSU_id__6B24EA82" FromRole="Technic" ToRole="PSU" />
+          <NavigationProperty Name="RAM" Relationship="Self.FK__Technic__RAM_id__6C190EBB" FromRole="Technic" ToRole="RAM" />
           <NavigationProperty Name="Table_part" Relationship="Self.FK__Table_par__Techn__66603565" FromRole="Technic" ToRole="Table_part" />
           <NavigationProperty Name="Technic_type" Relationship="Self.FK__Technic__Technic__72C60C4A" FromRole="Technic" ToRole="Technic_type" />
-        </EntityType>
-        <EntityType Name="Technic_tupe">
-          <Key>
-            <PropertyRef Name="Technic_type_id" />
-          </Key>
-          <Property Name="Technic_type_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name_tt" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Service" Relationship="Self.FK__Service__Technic__6D0D32F4" FromRole="Technic_tupe" ToRole="Service" />
         </EntityType>
         <EntityType Name="Technic_type">
           <Key>
@@ -593,6 +609,18 @@
           <Property Name="Technic_type_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Technic_type_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Technic" Relationship="Self.FK__Technic__Technic__72C60C4A" FromRole="Technic_type" ToRole="Technic" />
+        </EntityType>
+        <EntityType Name="Organization">
+          <Key>
+            <PropertyRef Name="Organization_type" />
+            <PropertyRef Name="Organization_name" />
+            <PropertyRef Name="Organization_address" />
+            <PropertyRef Name="Organization_discription" />
+          </Key>
+          <Property Name="Organization_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Organization_name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Organization_address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Organization_discription" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <Association Name="FK__CPU__Brand_id__71D1E811">
           <End Role="Brand" Type="Self.Brand" Multiplicity="1" />
@@ -618,14 +646,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ìotherboa__Brand__6E01572D">
+        <Association Name="FK__Motherboa__Brand__6E01572D">
           <End Role="Brand" Type="Self.Brand" Multiplicity="1" />
-          <End Role="Ìotherboard" Type="Self.Ìotherboard" Multiplicity="*" />
+          <End Role="Motherboard" Type="Self.Motherboard" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Brand">
               <PropertyRef Name="Brand_id" />
             </Principal>
-            <Dependent Role="Ìotherboard">
+            <Dependent Role="Motherboard">
               <PropertyRef Name="Brand_id" />
             </Dependent>
           </ReferentialConstraint>
@@ -690,7 +718,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Technic__CPU_id__68487DD7">
+        <Association Name="FK__Technic__CPU_id__693CA210">
           <End Role="CPU" Type="Self.CPU" Multiplicity="1" />
           <End Role="Technic" Type="Self.Technic" Multiplicity="*" />
           <ReferentialConstraint>
@@ -702,7 +730,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Technic__GPU_id__6C190EBB">
+        <Association Name="FK__Technic__GPU_id__6D0D32F4">
           <End Role="GPU" Type="Self.GPU" Multiplicity="1" />
           <End Role="Technic" Type="Self.Technic" Multiplicity="*" />
           <ReferentialConstraint>
@@ -714,11 +742,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Technic__Motherb__693CA210">
-          <End Role="Ìotherboard" Type="Self.Ìotherboard" Multiplicity="1" />
+        <Association Name="FK__Technic__Motherb__6A30C649">
+          <End Role="Motherboard" Type="Self.Motherboard" Multiplicity="1" />
           <End Role="Technic" Type="Self.Technic" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Ìotherboard">
+            <Principal Role="Motherboard">
               <PropertyRef Name="Motherboard_id" />
             </Principal>
             <Dependent Role="Technic">
@@ -726,7 +754,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Technic__PSU_id__6A30C649">
+        <Association Name="FK__Technic__PSU_id__6B24EA82">
           <End Role="PSU" Type="Self.PSU" Multiplicity="1" />
           <End Role="Technic" Type="Self.Technic" Multiplicity="*" />
           <ReferentialConstraint>
@@ -738,7 +766,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Technic__RAM_id__6B24EA82">
+        <Association Name="FK__Technic__RAM_id__6C190EBB">
           <End Role="RAM" Type="Self.RAM" Multiplicity="1" />
           <End Role="Technic" Type="Self.Technic" Multiplicity="*" />
           <ReferentialConstraint>
@@ -750,26 +778,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Service__Technic__6D0D32F4">
-          <End Role="Technic_tupe" Type="Self.Technic_tupe" Multiplicity="1" />
-          <End Role="Service" Type="Self.Service" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Technic_tupe">
-              <PropertyRef Name="Technic_type_id" />
-            </Principal>
-            <Dependent Role="Service">
-              <PropertyRef Name="Technic_type_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Table_par__Servi__6477ECF3">
+        <Association Name="FK__TB_Servic__Servi__6477ECF3">
           <End Role="Service" Type="Self.Service" Multiplicity="1" />
-          <End Role="Table_part" Type="Self.Table_part" Multiplicity="*" />
+          <End Role="TB_Services" Type="Self.TB_Services" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Service">
               <PropertyRef Name="Service_id" />
             </Principal>
-            <Dependent Role="Table_part">
+            <Dependent Role="TB_Services">
               <PropertyRef Name="Service_id" />
             </Dependent>
           </ReferentialConstraint>
@@ -786,6 +802,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__TB_Servic__Entry__68487DD7">
+          <End Role="Table_part" Type="Self.Table_part" Multiplicity="1" />
+          <End Role="TB_Services" Type="Self.TB_Services" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_part">
+              <PropertyRef Name="Entry_number" />
+            </Principal>
+            <Dependent Role="TB_Services">
+              <PropertyRef Name="Entry_number" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Technic__Technic__72C60C4A">
           <End Role="Technic_type" Type="Self.Technic_type" Multiplicity="1" />
           <End Role="Technic" Type="Self.Technic" Multiplicity="*" />
@@ -798,21 +826,22 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ComputerServicesDBEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="ComputerServiceDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Brand" EntityType="Self.Brand" />
           <EntitySet Name="Client" EntityType="Self.Client" />
           <EntitySet Name="Contract" EntityType="Self.Contract" />
           <EntitySet Name="CPU" EntityType="Self.CPU" />
           <EntitySet Name="Employee" EntityType="Self.Employee" />
           <EntitySet Name="GPU" EntityType="Self.GPU" />
-          <EntitySet Name="Ìotherboard" EntityType="Self.Ìotherboard" />
+          <EntitySet Name="Motherboard" EntityType="Self.Motherboard" />
           <EntitySet Name="PSU" EntityType="Self.PSU" />
           <EntitySet Name="RAM" EntityType="Self.RAM" />
           <EntitySet Name="Service" EntityType="Self.Service" />
           <EntitySet Name="Table_part" EntityType="Self.Table_part" />
+          <EntitySet Name="TB_Services" EntityType="Self.TB_Services" />
           <EntitySet Name="Technic" EntityType="Self.Technic" />
-          <EntitySet Name="Technic_tupe" EntityType="Self.Technic_tupe" />
           <EntitySet Name="Technic_type" EntityType="Self.Technic_type" />
+          <EntitySet Name="Organization" EntityType="Self.Organization" />
           <AssociationSet Name="FK__CPU__Brand_id__71D1E811" Association="Self.FK__CPU__Brand_id__71D1E811">
             <End Role="Brand" EntitySet="Brand" />
             <End Role="CPU" EntitySet="CPU" />
@@ -821,9 +850,9 @@
             <End Role="Brand" EntitySet="Brand" />
             <End Role="GPU" EntitySet="GPU" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ìotherboa__Brand__6E01572D" Association="Self.FK__Ìotherboa__Brand__6E01572D">
+          <AssociationSet Name="FK__Motherboa__Brand__6E01572D" Association="Self.FK__Motherboa__Brand__6E01572D">
             <End Role="Brand" EntitySet="Brand" />
-            <End Role="Ìotherboard" EntitySet="Ìotherboard" />
+            <End Role="Motherboard" EntitySet="Motherboard" />
           </AssociationSet>
           <AssociationSet Name="FK__PSU__Brand_id__6EF57B66" Association="Self.FK__PSU__Brand_id__6EF57B66">
             <End Role="Brand" EntitySet="Brand" />
@@ -845,37 +874,37 @@
             <End Role="Contract" EntitySet="Contract" />
             <End Role="Table_part" EntitySet="Table_part" />
           </AssociationSet>
-          <AssociationSet Name="FK__Technic__CPU_id__68487DD7" Association="Self.FK__Technic__CPU_id__68487DD7">
+          <AssociationSet Name="FK__Technic__CPU_id__693CA210" Association="Self.FK__Technic__CPU_id__693CA210">
             <End Role="CPU" EntitySet="CPU" />
             <End Role="Technic" EntitySet="Technic" />
           </AssociationSet>
-          <AssociationSet Name="FK__Technic__GPU_id__6C190EBB" Association="Self.FK__Technic__GPU_id__6C190EBB">
+          <AssociationSet Name="FK__Technic__GPU_id__6D0D32F4" Association="Self.FK__Technic__GPU_id__6D0D32F4">
             <End Role="GPU" EntitySet="GPU" />
             <End Role="Technic" EntitySet="Technic" />
           </AssociationSet>
-          <AssociationSet Name="FK__Technic__Motherb__693CA210" Association="Self.FK__Technic__Motherb__693CA210">
-            <End Role="Ìotherboard" EntitySet="Ìotherboard" />
+          <AssociationSet Name="FK__Technic__Motherb__6A30C649" Association="Self.FK__Technic__Motherb__6A30C649">
+            <End Role="Motherboard" EntitySet="Motherboard" />
             <End Role="Technic" EntitySet="Technic" />
           </AssociationSet>
-          <AssociationSet Name="FK__Technic__PSU_id__6A30C649" Association="Self.FK__Technic__PSU_id__6A30C649">
+          <AssociationSet Name="FK__Technic__PSU_id__6B24EA82" Association="Self.FK__Technic__PSU_id__6B24EA82">
             <End Role="PSU" EntitySet="PSU" />
             <End Role="Technic" EntitySet="Technic" />
           </AssociationSet>
-          <AssociationSet Name="FK__Technic__RAM_id__6B24EA82" Association="Self.FK__Technic__RAM_id__6B24EA82">
+          <AssociationSet Name="FK__Technic__RAM_id__6C190EBB" Association="Self.FK__Technic__RAM_id__6C190EBB">
             <End Role="RAM" EntitySet="RAM" />
             <End Role="Technic" EntitySet="Technic" />
           </AssociationSet>
-          <AssociationSet Name="FK__Service__Technic__6D0D32F4" Association="Self.FK__Service__Technic__6D0D32F4">
-            <End Role="Technic_tupe" EntitySet="Technic_tupe" />
+          <AssociationSet Name="FK__TB_Servic__Servi__6477ECF3" Association="Self.FK__TB_Servic__Servi__6477ECF3">
             <End Role="Service" EntitySet="Service" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Table_par__Servi__6477ECF3" Association="Self.FK__Table_par__Servi__6477ECF3">
-            <End Role="Service" EntitySet="Service" />
-            <End Role="Table_part" EntitySet="Table_part" />
+            <End Role="TB_Services" EntitySet="TB_Services" />
           </AssociationSet>
           <AssociationSet Name="FK__Table_par__Techn__66603565" Association="Self.FK__Table_par__Techn__66603565">
             <End Role="Technic" EntitySet="Technic" />
             <End Role="Table_part" EntitySet="Table_part" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_Servic__Entry__68487DD7" Association="Self.FK__TB_Servic__Entry__68487DD7">
+            <End Role="Table_part" EntitySet="Table_part" />
+            <End Role="TB_Services" EntitySet="TB_Services" />
           </AssociationSet>
           <AssociationSet Name="FK__Technic__Technic__72C60C4A" Association="Self.FK__Technic__Technic__72C60C4A">
             <End Role="Technic_type" EntitySet="Technic_type" />
@@ -887,9 +916,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище ComputerServicesDBModelContainer" CdmEntityContainer="ComputerServicesDBEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ComputerServiceDBModelContainer" CdmEntityContainer="ComputerServiceDBEntities">
           <EntitySetMapping Name="Brand">
-            <EntityTypeMapping TypeName="ComputerServicesDBModel.Brand">
+            <EntityTypeMapping TypeName="ComputerServiceDBModel.Brand">
               <MappingFragment StoreEntitySet="Brand">
                 <ScalarProperty Name="Brand_id" ColumnName="Brand_id" />
                 <ScalarProperty Name="Brand_name" ColumnName="Brand_name" />
@@ -897,7 +926,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Client">
-            <EntityTypeMapping TypeName="ComputerServicesDBModel.Client">
+            <EntityTypeMapping TypeName="ComputerServiceDBModel.Client">
               <MappingFragment StoreEntitySet="Client">
                 <ScalarProperty Name="Id_Client" ColumnName="Id_Client" />
                 <ScalarProperty Name="Client_name" ColumnName="Client_name" />
@@ -909,7 +938,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Contract">
-            <EntityTypeMapping TypeName="ComputerServicesDBModel.Contract">
+            <EntityTypeMapping TypeName="ComputerServiceDBModel.Contract">
               <MappingFragment StoreEntitySet="Contract">
                 <ScalarProperty Name="Contract_id" ColumnName="Contract_id" />
                 <ScalarProperty Name="Employee_id" ColumnName="Employee_id" />
@@ -920,7 +949,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CPU">
-            <EntityTypeMapping TypeName="ComputerServicesDBModel.CPU">
+            <EntityTypeMapping TypeName="ComputerServiceDBModel.CPU">
               <MappingFragment StoreEntitySet="CPU">
                 <ScalarProperty Name="CPU_id" ColumnName="CPU_id" />
                 <ScalarProperty Name="Brand_id" ColumnName="Brand_id" />
@@ -929,7 +958,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Employee">
-            <EntityTypeMapping TypeName="ComputerServicesDBModel.Employee">
+            <EntityTypeMapping TypeName="ComputerServiceDBModel.Employee">
               <MappingFragment StoreEntitySet="Employee">
                 <ScalarProperty Name="Employee_id" ColumnName="Employee_id" />
                 <ScalarProperty Name="Employee_name" ColumnName="Employee_name" />
@@ -937,11 +966,13 @@
                 <ScalarProperty Name="Employee_patronymic" ColumnName="Employee_patronymic" />
                 <ScalarProperty Name="Phone_number_employee" ColumnName="Phone_number_employee" />
                 <ScalarProperty Name="Employee_INN" ColumnName="Employee_INN" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="GPU">
-            <EntityTypeMapping TypeName="ComputerServicesDBModel.GPU">
+            <EntityTypeMapping TypeName="ComputerServiceDBModel.GPU">
               <MappingFragment StoreEntitySet="GPU">
                 <ScalarProperty Name="GPU_id" ColumnName="GPU_id" />
                 <ScalarProperty Name="Name_GPU" ColumnName="Name_GPU" />
@@ -949,32 +980,29 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Ìotherboard">
-            <EntityTypeMapping TypeName="ComputerServicesDBModel.Ìotherboard">
-              <MappingFragment StoreEntitySet="Ìotherboard">
+          <EntitySetMapping Name="Motherboard">
+            <EntityTypeMapping TypeName="ComputerServiceDBModel.Motherboard">
+              <MappingFragment StoreEntitySet="Motherboard">
                 <ScalarProperty Name="Motherboard_id" ColumnName="Motherboard_id" />
                 <ScalarProperty Name="Chipset" ColumnName="Chipset" />
                 <ScalarProperty Name="Socket" ColumnName="Socket" />
-                <ScalarProperty Name="Motherboard_brand" ColumnName="Motherboard_brand" />
                 <ScalarProperty Name="Brand_id" ColumnName="Brand_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PSU">
-            <EntityTypeMapping TypeName="ComputerServicesDBModel.PSU">
+            <EntityTypeMapping TypeName="ComputerServiceDBModel.PSU">
               <MappingFragment StoreEntitySet="PSU">
                 <ScalarProperty Name="PSU_id" ColumnName="PSU_id" />
-                <ScalarProperty Name="PSU_brand" ColumnName="PSU_brand" />
                 <ScalarProperty Name="Power_PSU" ColumnName="Power_PSU" />
                 <ScalarProperty Name="Brand_id" ColumnName="Brand_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="RAM">
-            <EntityTypeMapping TypeName="ComputerServicesDBModel.RAM">
+            <EntityTypeMapping TypeName="ComputerServiceDBModel.RAM">
               <MappingFragment StoreEntitySet="RAM">
                 <ScalarProperty Name="RAM_id" ColumnName="RAM_id" />
-                <ScalarProperty Name="RAM_name" ColumnName="RAM_name" />
                 <ScalarProperty Name="RAM_volume" ColumnName="RAM_volume" />
                 <ScalarProperty Name="RAM_units" ColumnName="RAM_units" />
                 <ScalarProperty Name="Brand_id" ColumnName="Brand_id" />
@@ -982,28 +1010,35 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Service">
-            <EntityTypeMapping TypeName="ComputerServicesDBModel.Service">
+            <EntityTypeMapping TypeName="ComputerServiceDBModel.Service">
               <MappingFragment StoreEntitySet="Service">
                 <ScalarProperty Name="Service_id" ColumnName="Service_id" />
                 <ScalarProperty Name="Service_name" ColumnName="Service_name" />
                 <ScalarProperty Name="Service_description" ColumnName="Service_description" />
                 <ScalarProperty Name="Service_price" ColumnName="Service_price" />
-                <ScalarProperty Name="Technic_type_id" ColumnName="Technic_type_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Table_part">
-            <EntityTypeMapping TypeName="ComputerServicesDBModel.Table_part">
+            <EntityTypeMapping TypeName="ComputerServiceDBModel.Table_part">
               <MappingFragment StoreEntitySet="Table_part">
                 <ScalarProperty Name="Entry_number" ColumnName="Entry_number" />
-                <ScalarProperty Name="Service_id" ColumnName="Service_id" />
                 <ScalarProperty Name="Technic_id" ColumnName="Technic_id" />
                 <ScalarProperty Name="Contract_id" ColumnName="Contract_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="TB_Services">
+            <EntityTypeMapping TypeName="ComputerServiceDBModel.TB_Services">
+              <MappingFragment StoreEntitySet="TB_Services">
+                <ScalarProperty Name="TB_Services_Id" ColumnName="TB_Services_Id" />
+                <ScalarProperty Name="Service_id" ColumnName="Service_id" />
+                <ScalarProperty Name="Entry_number" ColumnName="Entry_number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Technic">
-            <EntityTypeMapping TypeName="ComputerServicesDBModel.Technic">
+            <EntityTypeMapping TypeName="ComputerServiceDBModel.Technic">
               <MappingFragment StoreEntitySet="Technic">
                 <ScalarProperty Name="Technic_id" ColumnName="Technic_id" />
                 <ScalarProperty Name="Technic_name" ColumnName="Technic_name" />
@@ -1016,19 +1051,21 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Technic_tupe">
-            <EntityTypeMapping TypeName="ComputerServicesDBModel.Technic_tupe">
-              <MappingFragment StoreEntitySet="Technic_tupe">
-                <ScalarProperty Name="Technic_type_id" ColumnName="Technic_type_id" />
-                <ScalarProperty Name="Name_tt" ColumnName="Name_tt" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Technic_type">
-            <EntityTypeMapping TypeName="ComputerServicesDBModel.Technic_type">
+            <EntityTypeMapping TypeName="ComputerServiceDBModel.Technic_type">
               <MappingFragment StoreEntitySet="Technic_type">
                 <ScalarProperty Name="Technic_type_id" ColumnName="Technic_type_id" />
                 <ScalarProperty Name="Technic_type_name" ColumnName="Technic_type_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Organization">
+            <EntityTypeMapping TypeName="ComputerServiceDBModel.Organization">
+              <MappingFragment StoreEntitySet="Organization">
+                <ScalarProperty Name="Organization_type" ColumnName="Organization_type" />
+                <ScalarProperty Name="Organization_name" ColumnName="Organization_name" />
+                <ScalarProperty Name="Organization_address" ColumnName="Organization_address" />
+                <ScalarProperty Name="Organization_discription" ColumnName="Organization_discription" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

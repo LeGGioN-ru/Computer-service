@@ -21,7 +21,6 @@ namespace Computer_service.Models
         }
     
         public int PSU_id { get; set; }
-        public string PSU_brand { get; set; }
         public string Power_PSU { get; set; }
         public int Brand_id { get; set; }
     

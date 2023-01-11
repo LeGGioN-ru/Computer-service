@@ -31,7 +31,7 @@ namespace Computer_service.Models
     
         public virtual CPU CPU { get; set; }
         public virtual GPU GPU { get; set; }
-        public virtual Ìotherboard Ìotherboard { get; set; }
+        public virtual Motherboard Motherboard { get; set; }
         public virtual PSU PSU { get; set; }
         public virtual RAM RAM { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

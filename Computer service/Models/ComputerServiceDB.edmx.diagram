@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bd0a2b6a1b544dba9f3de04fd26049a7" Name="Diagram1">
+        <EntityTypeShape EntityType="ComputerServiceDBModel.Brand" Width="1.5" PointX="0.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputerServiceDBModel.Client" Width="1.5" PointX="3" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputerServiceDBModel.Contract" Width="1.5" PointX="5.25" PointY="20.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputerServiceDBModel.CPU" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputerServiceDBModel.Employee" Width="1.5" PointX="3" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputerServiceDBModel.GPU" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputerServiceDBModel.Motherboard" Width="1.5" PointX="3" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputerServiceDBModel.PSU" Width="1.5" PointX="3" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputerServiceDBModel.RAM" Width="1.5" PointX="3" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputerServiceDBModel.Service" Width="1.5" PointX="7.5" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputerServiceDBModel.Table_part" Width="1.5" PointX="7.5" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputerServiceDBModel.TB_Services" Width="1.5" PointX="9.75" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputerServiceDBModel.Technic" Width="1.5" PointX="5.25" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputerServiceDBModel.Technic_type" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputerServiceDBModel.Organization" Width="1.5" PointX="5.75" PointY="2.125" IsExpanded="true" />
+        <AssociationConnector Association="ComputerServiceDBModel.FK__CPU__Brand_id__71D1E811" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputerServiceDBModel.FK__GPU__Brand_id__70DDC3D8" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputerServiceDBModel.FK__Motherboa__Brand__6E01572D" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputerServiceDBModel.FK__PSU__Brand_id__6EF57B66" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputerServiceDBModel.FK__RAM__Brand_id__6FE99F9F" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputerServiceDBModel.FK__Contract__Id_Cli__6383C8BA" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputerServiceDBModel.FK__Contract__Employ__6754599E" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputerServiceDBModel.FK__Table_par__Contr__656C112C" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputerServiceDBModel.FK__Technic__CPU_id__693CA210" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputerServiceDBModel.FK__Technic__GPU_id__6D0D32F4" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputerServiceDBModel.FK__Technic__Motherb__6A30C649" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputerServiceDBModel.FK__Technic__PSU_id__6B24EA82" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputerServiceDBModel.FK__Technic__RAM_id__6C190EBB" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputerServiceDBModel.FK__TB_Servic__Servi__6477ECF3" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputerServiceDBModel.FK__Table_par__Techn__66603565" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputerServiceDBModel.FK__TB_Servic__Entry__68487DD7" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputerServiceDBModel.FK__Technic__Technic__72C60C4A" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

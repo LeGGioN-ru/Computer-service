@@ -12,21 +12,11 @@ namespace Computer_service.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class RAM
+    public partial class Organization
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public RAM()
-        {
-            this.Technic = new HashSet<Technic>();
-        }
-    
-        public int RAM_id { get; set; }
-        public string RAM_volume { get; set; }
-        public int RAM_units { get; set; }
-        public int Brand_id { get; set; }
-    
-        public virtual Brand Brand { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Technic> Technic { get; set; }
+        public string Organization_type { get; set; }
+        public string Organization_name { get; set; }
+        public string Organization_address { get; set; }
+        public string Organization_discription { get; set; }
     }
 }

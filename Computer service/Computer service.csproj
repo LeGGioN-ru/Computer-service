@@ -65,70 +65,115 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Models\Brand.cs">
-      <DependentUpon>ComputerServicesDB.tt</DependentUpon>
+      <DependentUpon>ComputerServiceDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Client.cs">
-      <DependentUpon>ComputerServicesDB.tt</DependentUpon>
+      <DependentUpon>ComputerServiceDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ComputerServicesDB.Context.cs">
+    <Compile Include="Models\ComputerServiceDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ComputerServicesDB.Context.tt</DependentUpon>
+      <DependentUpon>ComputerServiceDB.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ComputerServicesDB.cs">
+    <Compile Include="Models\ComputerServiceDB.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ComputerServicesDB.tt</DependentUpon>
+      <DependentUpon>ComputerServiceDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ComputerServicesDB.Designer.cs">
+    <Compile Include="Models\ComputerServiceDB.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ComputerServicesDB.edmx</DependentUpon>
+      <DependentUpon>ComputerServiceDB.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Contract.cs">
-      <DependentUpon>ComputerServicesDB.tt</DependentUpon>
+      <DependentUpon>ComputerServiceDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ContractPartial.cs" />
     <Compile Include="Models\CPU.cs">
-      <DependentUpon>ComputerServicesDB.tt</DependentUpon>
+      <DependentUpon>ComputerServiceDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Employee.cs">
-      <DependentUpon>ComputerServicesDB.tt</DependentUpon>
+      <DependentUpon>ComputerServiceDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GPU.cs">
-      <DependentUpon>ComputerServicesDB.tt</DependentUpon>
+      <DependentUpon>ComputerServiceDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Motherboard.cs">
+      <DependentUpon>ComputerServiceDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MotherboardPartial.cs" />
+    <Compile Include="Models\Organization.cs">
+      <DependentUpon>ComputerServiceDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PSU.cs">
-      <DependentUpon>ComputerServicesDB.tt</DependentUpon>
+      <DependentUpon>ComputerServiceDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PSUPartial.cs" />
     <Compile Include="Models\RAM.cs">
-      <DependentUpon>ComputerServicesDB.tt</DependentUpon>
+      <DependentUpon>ComputerServiceDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\RAMPartial.cs" />
     <Compile Include="Models\Service.cs">
-      <DependentUpon>ComputerServicesDB.tt</DependentUpon>
+      <DependentUpon>ComputerServiceDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TablePartPartial.cs" />
     <Compile Include="Models\Table_part.cs">
-      <DependentUpon>ComputerServicesDB.tt</DependentUpon>
+      <DependentUpon>ComputerServiceDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TB_Services.cs">
+      <DependentUpon>ComputerServiceDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Technic.cs">
-      <DependentUpon>ComputerServicesDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Technic_tupe.cs">
-      <DependentUpon>ComputerServicesDB.tt</DependentUpon>
+      <DependentUpon>ComputerServiceDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Technic_type.cs">
-      <DependentUpon>ComputerServicesDB.tt</DependentUpon>
+      <DependentUpon>ComputerServiceDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Ìotherboard.cs">
-      <DependentUpon>ComputerServicesDB.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\UIHelper.cs" />
     <Compile Include="Views\Pages\AuthorizationPage.xaml.cs">
       <DependentUpon>AuthorizationPage.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\Pages\Client\ClientEditPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\Client\ClientPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\Contract\ContractEditPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\Contract\ContractPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\TablePart\TablePartEditPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\TablePart\TablePartPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\Technic\TechnicEditPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\Technic\TechnicPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Pages\TemplateAddEditPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\TemplatePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\CheckWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -140,11 +185,38 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Views\Pages\Client\ClientEditPage.xaml.cs">
+      <DependentUpon>ClientEditPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Client\ClientPage.xaml.cs">
+      <DependentUpon>ClientPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Contract\ContractEditPage.xaml.cs">
+      <DependentUpon>ContractEditPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Contract\ContractPage.xaml.cs">
+      <DependentUpon>ContractPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\TablePart\TablePartEditPage.xaml.cs">
+      <DependentUpon>TablePartEditPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\TablePart\TablePartPage.xaml.cs">
+      <DependentUpon>TablePartPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Technic\TechnicEditPage.xaml.cs">
+      <DependentUpon>TechnicEditPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Technic\TechnicPage.xaml.cs">
+      <DependentUpon>TechnicPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\TemplateAddEditPage.xaml.cs">
       <DependentUpon>TemplateAddEditPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\TemplatePage.xaml.cs">
       <DependentUpon>TemplatePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Windows\CheckWindow.xaml.cs">
+      <DependentUpon>CheckWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -173,12 +245,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Models\ComputerServicesDB.edmx">
+    <EntityDeploy Include="Models\ComputerServiceDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ComputerServicesDB.Designer.cs</LastGenOutput>
+      <LastGenOutput>ComputerServiceDB.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Models\ComputerServicesDB.edmx.diagram">
-      <DependentUpon>ComputerServicesDB.edmx</DependentUpon>
+    <None Include="Models\ComputerServiceDB.edmx.diagram">
+      <DependentUpon>ComputerServiceDB.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -189,24 +261,33 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\wrench.png" />
+    <Resource Include="Images\costumer.png" />
+    <Resource Include="Images\contract.png" />
+    <Resource Include="Images\shopping-bag.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Models\ComputerServicesDB.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ComputerServicesDB.Context.cs</LastGenOutput>
-      <DependentUpon>ComputerServicesDB.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\ComputerServicesDB.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ComputerServicesDB.edmx</DependentUpon>
-      <LastGenOutput>ComputerServicesDB.cs</LastGenOutput>
-    </Content>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Resource Include="Images\qr-code %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\x-mark.png" />
+    <Content Include="Models\ComputerServiceDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ComputerServiceDB.edmx</DependentUpon>
+      <LastGenOutput>ComputerServiceDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ComputerServiceDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ComputerServiceDB.edmx</DependentUpon>
+      <LastGenOutput>ComputerServiceDB.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -12,10 +12,10 @@ namespace Computer_service.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Ìotherboard
+    public partial class Motherboard
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Ìotherboard()
+        public Motherboard()
         {
             this.Technic = new HashSet<Technic>();
         }
@@ -23,7 +23,6 @@ namespace Computer_service.Models
         public int Motherboard_id { get; set; }
         public string Chipset { get; set; }
         public string Socket { get; set; }
-        public string Motherboard_brand { get; set; }
         public int Brand_id { get; set; }
     
         public virtual Brand Brand { get; set; }

@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using Computer_service.Models;
+using Computer_service.Views.Pages;
+using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Computer_service.Views
@@ -31,7 +34,12 @@ namespace Computer_service.Views
 
         private void ButtonEnter_Click(object sender, RoutedEventArgs e)
         {
+            Employee employee = App.Context.Employee.FirstOrDefault(x => x.Login == LoginTextBox.Text && (x.Password == PasswordPasswordBox.Password || x.Password == PasswordTextBox.Text));
 
+            if (employee != null)
+                NavigationService.Navigate(new ClientPage());
+            else
+                UIHelper.ShowException("войти в аккаунт");
         }
     }
 }

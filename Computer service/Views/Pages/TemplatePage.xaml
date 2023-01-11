@@ -14,16 +14,16 @@
             <RowDefinition Height="6*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#1b1b1b" Offset="1" />
+                <GradientStop Color="#212121" Offset="0" />
+            </LinearGradientBrush>
+        </Grid.Background>
         <StackPanel HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     Orientation="Horizontal">
-            <StackPanel.Background>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                    <GradientStop Color="#1b1b1b" Offset="1" />
-                    <GradientStop Color="#212121" Offset="0" />
-                </LinearGradientBrush>
-            </StackPanel.Background>
+          
 
             <Image Source="\Images\logo.png"
                    Width="50"

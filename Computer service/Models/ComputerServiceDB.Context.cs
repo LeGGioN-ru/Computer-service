@@ -13,10 +13,10 @@ namespace Computer_service.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ComputerServicesDBEntities : DbContext
+    public partial class ComputerServiceDBEntities : DbContext
     {
-        public ComputerServicesDBEntities()
-            : base("name=ComputerServicesDBEntities")
+        public ComputerServiceDBEntities()
+            : base("name=ComputerServiceDBEntities")
         {
         }
     
@@ -31,13 +31,14 @@ namespace Computer_service.Models
         public virtual DbSet<CPU> CPU { get; set; }
         public virtual DbSet<Employee> Employee { get; set; }
         public virtual DbSet<GPU> GPU { get; set; }
-        public virtual DbSet<Ìotherboard> Ìotherboard { get; set; }
+        public virtual DbSet<Motherboard> Motherboard { get; set; }
         public virtual DbSet<PSU> PSU { get; set; }
         public virtual DbSet<RAM> RAM { get; set; }
         public virtual DbSet<Service> Service { get; set; }
         public virtual DbSet<Table_part> Table_part { get; set; }
+        public virtual DbSet<TB_Services> TB_Services { get; set; }
         public virtual DbSet<Technic> Technic { get; set; }
-        public virtual DbSet<Technic_tupe> Technic_tupe { get; set; }
         public virtual DbSet<Technic_type> Technic_type { get; set; }
+        public virtual DbSet<Organization> Organization { get; set; }
     }
 }
