@@ -1,0 +1,99 @@
+﻿<Page x:Class="Computer_service.Views.Pages.TablePart1.TablePartEditPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Computer_service.Views.Pages.TablePart1"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="TablePartEditPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="379*"/>
+            <RowDefinition Height="71*"/>
+        </Grid.RowDefinitions>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#1b1b1b" Offset="1" />
+                <GradientStop Color="#212121" Offset="0" />
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <StackPanel HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                    Grid.Row="0"
+                    >
+            <Image Source="\Images\logo.png"
+                   Width="100"
+                   Height="100"
+                   Margin="0 10 0 10"/>
+
+            <StackPanel Orientation="Horizontal"
+                        Margin="0 0 0 10">
+                <TextBlock Text="Техника"
+                           Margin="0 0 16 0"
+                           Foreground="White"
+                           VerticalAlignment="Center"/>
+                <ComboBox Width="150"
+                          x:Name="TechnicComboBox"
+                          DisplayMemberPath="Technic_name"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"
+                        Margin="0 0 0 10">
+                <TextBlock Text="Контракт"
+                           Margin="0 0 10 0"
+                           Foreground="White"
+                           VerticalAlignment="Center"/>
+                <ComboBox Width="150" 
+                          x:Name="ContractComboBox"
+                          DisplayMemberPath="FullInfo"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"
+                        Margin="0 0 0 10">
+                <TextBlock Text="Услуга"
+                           Margin="0 0 25 0"
+                           Foreground="White"
+                           VerticalAlignment="Center"/>
+                <ComboBox Width="150" 
+                          x:Name="ServiceComboBox"
+                          DisplayMemberPath="Service_name"/>
+                <Button Margin="10 0 0 0" Content="+" Width="20" Click="ButtonAddService_Click"
+                        x:Name="ButtonAdd"/>
+                <Button Margin="10 0 0 0" Content="-" Width="20" Click="ButtonRemove_Click"
+                        x:Name="ButtonRemove"/>
+            </StackPanel>
+            <DataGrid Height="150" Width="200"
+                      x:Name="ServicesDataGrid"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True"
+                      CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Услуга" Width="*" Binding="{Binding Service.Service_name}"/>
+                    <DataGridTextColumn Header="Цена" Width="60" Binding="{Binding Service.Service_price}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="1"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <Button Background="White"
+                    Width="200"
+                    Height="30"
+                    Margin="0 0 10 0" Click="ButtonAdd_Click"
+                    x:Name="EditButton">
+                <TextBlock Text="Добавить"
+                           Foreground="Black"/>
+            </Button>
+            <Button Background="White"
+                    Width="200"
+                    Height="30"
+                      Margin="10 0 0 0" Click="ButtonCancel_Click">
+                <TextBlock Text="Отмена"
+                           Foreground="Black"/>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Page>
