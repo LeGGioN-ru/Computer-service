@@ -76,6 +76,7 @@
                   x:Name="TechnicDataGrid"
                   IsReadOnly="True">
             <DataGrid.Columns>
+                <DataGridTextColumn Width="*" Header="Имя техники" Binding="{Binding Technic_name}"/>
                 <DataGridTextColumn Width="*" Header="Процессор" Binding="{Binding CPU.CPU_model}"/>
                 <DataGridTextColumn Width="*" Header="Материнская плата" Binding="{Binding  Motherboard.FullName}"/>
                 <DataGridTextColumn Width="*" Header="Блок питания" Binding="{Binding PSU.FullName}"/>

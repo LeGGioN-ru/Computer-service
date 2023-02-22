@@ -45,7 +45,7 @@
                            VerticalAlignment="Center"/>
                 <ComboBox Width="150"
                           x:Name="MotherboardComboBox"
-                          DisplayMemberPath="Motherboard_brand"/>
+                          DisplayMemberPath="FullName"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                         Margin="0 0 0 10">
@@ -55,7 +55,7 @@
                            VerticalAlignment="Center"/>
                 <ComboBox Width="150" 
                           x:Name="PSUComboBox"
-                          DisplayMemberPath="PSU_brand"/>
+                          DisplayMemberPath="FullName"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                         Margin="0 0 0 10">
@@ -65,7 +65,7 @@
                            VerticalAlignment="Center"/>
                 <ComboBox Width="150" 
                           x:Name="RAMComboBox"
-                          DisplayMemberPath="RAM_name"/>
+                          DisplayMemberPath="FullName"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                         Margin="0 0 0 10">

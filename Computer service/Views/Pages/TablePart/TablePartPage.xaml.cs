@@ -48,10 +48,19 @@ namespace Computer_service.Views.Pages.TablePart1
             {
                 if (UIHelper.GetConfirm("удалить табличную часть"))
                 {
+                    RemoveTBData(table_part);
                     App.Context.Table_part.Remove(table_part);
                     App.Context.SaveChanges();
+                    UpdateDataGrid();
                 }
             }
+        }
+
+        private void RemoveTBData(Table_part table_Part)
+        {
+            var TBData = App.Context.TB_Services.Where(x => x.Table_part.Entry_number == table_Part.Entry_number).ToList();
+            App.Context.TB_Services.RemoveRange(TBData);
+            App.Context.SaveChanges();
         }
 
         private void UpdateDataGrid()

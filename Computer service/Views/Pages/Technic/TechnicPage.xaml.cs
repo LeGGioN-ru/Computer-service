@@ -90,16 +90,21 @@ namespace Computer_service.Views.Pages.Technic1
                 {
                     RemoveTableParts(technic);
                     App.Context.Technic.Remove(technic);
+                    App.Context.SaveChanges();
                 }
             }
 
             UpdateDataGrid();
         }
+
         private void RemoveTableParts(Technic technic)
         {
-            List<Table_part> removeTableParts = App.Context.Table_part.Where(x => x.Technic_id == x.Technic_id).ToList();
+            List<Table_part> removeTableParts = App.Context.Table_part.Where(x => x.Technic_id == technic.Technic_id).ToList();
 
+            List<TB_Services> removeTBPart = App.Context.TB_Services.Where(x => x.Table_part.Technic_id == technic.Technic_id).ToList();
+            App.Context.TB_Services.RemoveRange(removeTBPart);
             App.Context.Table_part.RemoveRange(removeTableParts);
+
             App.Context.SaveChanges();
         }
 

@@ -93,8 +93,10 @@ namespace Computer_service.Views.Pages.Contract1
         private void RemoveTableParts(Contract contract)
         {
             List<Table_part> removeTableParts = App.Context.Table_part.Where(x => x.Contract.Contract_id == contract.Contract_id).ToList();
+            List<TB_Services> removeTBparts = App.Context.TB_Services.Where(x => x.Table_part.Contract_id == contract.Contract_id).ToList();
 
             App.Context.Table_part.RemoveRange(removeTableParts);
+            App.Context.TB_Services.RemoveRange(removeTBparts);
             App.Context.SaveChanges();
         }
 

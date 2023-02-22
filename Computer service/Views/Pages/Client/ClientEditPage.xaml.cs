@@ -47,7 +47,7 @@ namespace Computer_service.Views.Pages.Client1
                     return;
                 }
 
-                if(IsExistAnotherClient())
+                if (IsExistAnotherClient())
                 {
                     UIHelper.ShowException("добавить/изменить клиента (уже существует клиент с таким адресом и/или телефоном)");
                     return;
@@ -108,6 +108,9 @@ namespace Computer_service.Views.Pages.Client1
         private bool IsExistAnotherClient()
         {
             Client client = App.Context.Client.FirstOrDefault(x => x.Address_client == AddressTextBox.Text || x.Phone_number_client == PhoneNumberTextBox.Text);
+
+            if (client.Id_Client == currentClient.Id_Client)
+                client = null;
 
             return client != null;
         }
