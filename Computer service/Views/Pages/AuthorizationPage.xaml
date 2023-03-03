@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Computer_service.Views"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AuthorizationPage">
+      Title="Авторизация">
 
     <Grid>
         <Grid.Background>
@@ -32,7 +32,8 @@
                                Foreground="White"/>
                     <TextBox Width="200" 
                          Margin="19.3 0 0 0"
-                         x:Name="LoginTextBox"/>
+                         x:Name="LoginTextBox"
+                             Padding="2"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
@@ -41,9 +42,11 @@
                                Foreground="White"/>
                     <TextBox Width="200" Margin="8 0 0 0"
                              x:Name="PasswordTextBox"
-                             Visibility="Collapsed"/>
+                             Visibility="Collapsed"
+                             Padding="2"/>
                     <PasswordBox Width="200" Margin="8 0 0 0"
-                            x:Name="PasswordPasswordBox"
+                             x:Name="PasswordPasswordBox"
+                             Padding="2"
                              Visibility="Visible"/>
                 </StackPanel>
 

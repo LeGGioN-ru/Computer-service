@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Computer_service.Views.Pages.TablePart1"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="TablePartEditPage">
+      Title="Редактирование табличной части">
 
     <Grid>
         <Grid.RowDefinitions>

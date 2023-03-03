@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Computer_service.Views.Pages.Contract1"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ContractPage">
+      Title="Контракт">
 
     <Grid>
         <Grid.RowDefinitions>

@@ -5,40 +5,45 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Computer_service.Views.Windows"
         mc:Ignorable="d"
-        Title="CheckWindow" Height="1000" Width="1000" WindowStartupLocation="CenterScreen">
+        Title="Чек" Height="800" Width="500" WindowStartupLocation="CenterScreen">
     <Grid>
-        <StackPanel>
-            <StackPanel Background="Black" Orientation="Horizontal">
-                <Image Source="\Images\logo.png" Height="200"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="67*"/>
+            <RowDefinition Height="125*"/>
+            <RowDefinition Height="136*"/>
+        </Grid.RowDefinitions>
+       
+            <StackPanel Background="Black" Orientation="Horizontal" Grid.Row="0">
+                <Image Source="\Images\logo.png"/>
                 <TextBlock Text="№Чека"
-                           Margin="150 0 0 0"
-                           FontSize="75"
+                           FontSize="20"
+                           Margin="120 0 0 0"
                            x:Name="CheckNumberTextBlock"
                            VerticalAlignment="Center"
                            Foreground="White"/>
             </StackPanel>
-            <DataGrid Height="377" FontSize="40"
-                      x:Name="DataGridService"
+            <DataGrid x:Name="DataGridService"
+                      Grid.Row="1"
                       AutoGenerateColumns="False"
                       IsReadOnly="True"
                       CanUserAddRows="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Наименование услуги" Width="*" Binding="{Binding Service.Service_name}"/>
-                    <DataGridTextColumn Header="Цена" Width="200" Binding="{Binding Service.Service_price}"/>
+                    <DataGridTextColumn Header="Цена" Width="*" Binding="{Binding Service.Service_price}"/>
                 </DataGrid.Columns>
             </DataGrid>
             <TextBlock Text="Сумма 100"
                        HorizontalAlignment="Right"
-                       FontSize="40"
                        Margin="0 10 20 0"
                        x:Name="SumTextBlock"/>
-            <StackPanel Margin="30">
-                <TextBlock Text="ИНН 1234567899" FontSize="30"
+        <StackPanel Margin="30" Grid.Row="2">
+            <TextBlock Text="ИНН 1234567899" FontSize="30"
                            Margin="0 0 0 40"/>
-                <TextBlock Text="Адрес г Серпухов ул Ленина 110" FontSize="30"/>
-                <Image HorizontalAlignment="Right" Height="100" Width="100"
-                       Source="\Images\qr-code (2).png"/>
-            </StackPanel>
+            <TextBlock Text="Адрес г Серпухов ул Ленина 110"/>
+            <Image HorizontalAlignment="Right" 
+                   Width="100"
+                   Source="\Images\qr-code (2).png"/>
+            <Button Content="Печать" Click="ButtonPrint_Click"/>
         </StackPanel>
     </Grid>
 </Window>
