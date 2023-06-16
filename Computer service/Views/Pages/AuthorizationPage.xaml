@@ -67,10 +67,6 @@
                            FontSize="18"/>
                 </Button>
             </StackPanel>
-            <Image Source="\Images\logo.png"
-                   Width="100"
-                   Height="100"
-                   Margin="20 20 0 0"/>
         </StackPanel>
       
     </Grid>
