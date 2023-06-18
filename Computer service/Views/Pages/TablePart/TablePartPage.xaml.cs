@@ -1,7 +1,7 @@
 ﻿using Computer_service.Models;
 using Computer_service.Views.Pages.Contract1;
+using Computer_service.Views.Pages.Services;
 using Computer_service.Views.Pages.Technic1;
-using Computer_service.Views.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -122,7 +122,7 @@ namespace Computer_service.Views.Pages.TablePart1
         {
             if (TablePartsDataGrid.SelectedItem is Table_part table_Part)
             {
-                CheckWindow checkWindow = new CheckWindow(table_Part);
+                WindowCheckCheck checkWindow = new WindowCheckCheck(table_Part);
                 checkWindow.Show();
             }
         }
@@ -131,6 +131,12 @@ namespace Computer_service.Views.Pages.TablePart1
         {
             if (UIHelper.GetConfirm("выйти из аккаунта"))
                 NavigationService.Navigate(new AuthorizationPage());
+        }
+
+        private void ButtonService_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ServicePage());
+
         }
     }
 }

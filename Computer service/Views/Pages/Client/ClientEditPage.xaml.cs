@@ -109,7 +109,7 @@ namespace Computer_service.Views.Pages.Client1
         {
             Client client = App.Context.Client.FirstOrDefault(x => x.Address_client == AddressTextBox.Text || x.Phone_number_client == PhoneNumberTextBox.Text);
 
-            if (client.Id_Client == currentClient.Id_Client)
+            if (currentClient != null && client.Id_Client == currentClient.Id_Client)
                 client = null;
 
             return client != null;

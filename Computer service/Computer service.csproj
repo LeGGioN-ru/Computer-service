@@ -48,6 +48,9 @@
       <HintPath>..\packages\Microsoft.Office.Interop.Word.15.0.4797.1004\lib\net20\Microsoft.Office.Interop.Word.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+    <Reference Include="QRCoder, Version=1.4.3.0, Culture=neutral, PublicKeyToken=c4ed5b9ae8358a28, processorArchitecture=MSIL">
+      <HintPath>..\packages\QRCoder.1.4.3\lib\net40\QRCoder.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -77,6 +80,7 @@
     <Compile Include="Models\Client.cs">
       <DependentUpon>ComputerServiceDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ClientPartial.cs" />
     <Compile Include="Models\ComputerServiceDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -141,6 +145,9 @@
     <Compile Include="Views\Pages\AuthorizationPage.xaml.cs">
       <DependentUpon>AuthorizationPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WindowCheckCheck.xaml.cs">
+      <DependentUpon>WindowCheckCheck.xaml</DependentUpon>
+    </Compile>
     <Page Include="Views\Pages\Client\ClientEditPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -154,6 +161,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\Contract\ContractPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\Service\ServiceEditPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\Service\ServicePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -181,10 +196,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Windows\CheckWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\Windows\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -205,6 +216,12 @@
     <Compile Include="Views\Pages\Contract\ContractPage.xaml.cs">
       <DependentUpon>ContractPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Pages\Service\ServiceEditPage.xaml.cs">
+      <DependentUpon>ServiceEditPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Service\ServicePage.xaml.cs">
+      <DependentUpon>ServicePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\TablePart\TablePartEditPage.xaml.cs">
       <DependentUpon>TablePartEditPage.xaml</DependentUpon>
     </Compile>
@@ -223,14 +240,15 @@
     <Compile Include="Views\Pages\TemplatePage.xaml.cs">
       <DependentUpon>TemplatePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Windows\CheckWindow.xaml.cs">
-      <DependentUpon>CheckWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\Pages\AuthorizationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowCheckCheck.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -287,6 +305,7 @@
   <ItemGroup>
     <Resource Include="Images\x-mark.png" />
     <Resource Include="logo.ico" />
+    <Resource Include="Images\service.png" />
     <Content Include="Models\ComputerServiceDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ComputerServiceDB.edmx</DependentUpon>

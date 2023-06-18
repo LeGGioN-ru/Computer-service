@@ -1,12 +1,13 @@
-﻿<Page x:Class="Computer_service.Views.Pages.TemplateAddEditPage"
+﻿<Page x:Class="Computer_service.Views.Pages.Services.ServiceEditPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Computer_service.Views.Pages"
+      xmlns:local="clr-namespace:Computer_service.Views.Pages.Services"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="TemplateAddEditPage">
+      Title="ServiceEditPage">
+
 
     <Grid>
         <Grid.RowDefinitions>
@@ -26,59 +27,27 @@
                     >
             <StackPanel Orientation="Horizontal"
                         Margin="0 0 0 10">
-                <TextBlock Text="Атрибут"
+                <TextBlock Text="Название"
                            Margin="0 0 10 0"
                            Foreground="White"/>
-                <TextBox Width="150"/>
+                <TextBox Width="150"
+                         x:Name="TextBoxName"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                         Margin="0 0 0 10">
-                <TextBlock Text="Атрибут"
-                           Margin="0 0 10 0"
+                <TextBlock Text="Цена"
+                           Margin="0 0 34.5 0"
                            Foreground="White"/>
-                <TextBox Width="150"/>
+                <TextBox Width="150"
+                        x:Name="TextBoxPrice"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                         Margin="0 0 0 10">
-                <TextBlock Text="Атрибут"
-                           Margin="0 0 10 0"
+                <TextBlock Text="Описание"
+                           Margin="0 0 8.4 0"
                            Foreground="White"/>
-                <TextBox Width="150"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal"
-                        Margin="0 0 0 10">
-                <TextBlock Text="Атрибут"
-                           Margin="0 0 10 0"
-                           Foreground="White"/>
-                <TextBox Width="150"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal"
-                        Margin="0 0 0 10">
-                <TextBlock Text="Атрибут"
-                           Margin="0 0 10 0"
-                           Foreground="White"/>
-                <TextBox Width="150"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal"
-                        Margin="0 0 0 10">
-                <TextBlock Text="Атрибут"
-                           Margin="0 0 10 0"
-                           Foreground="White"/>
-                <TextBox Width="150"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal"
-                        Margin="0 0 0 10">
-                <TextBlock Text="Атрибут"
-                           Margin="0 0 10 0"
-                           Foreground="White"/>
-                <TextBox Width="150"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal"
-                        Margin="0 0 0 10">
-                <TextBlock Text="Атрибут"
-                           Margin="0 0 10 0"
-                           Foreground="White"/>
-                <TextBox Width="150"/>
+                <TextBox Width="150"
+                         x:Name="TextBoxDescription"/>
             </StackPanel>
         </StackPanel>
 
@@ -89,14 +58,14 @@
             <Button Background="White"
                     Width="200"
                     Height="30"
-                    Margin="0 0 10 0">
+                    Margin="0 0 10 0" Click="ButtonAddEdit_Click">
                 <TextBlock Text="Добавить"
                            Foreground="Black"/>
             </Button>
             <Button Background="White"
                     Width="200"
                     Height="30"
-                      Margin="10 0 0 0">
+                      Margin="10 0 0 0" Click="ButtonBack_Click">
                 <TextBlock Text="Отмена"
                            Foreground="Black"/>
             </Button>

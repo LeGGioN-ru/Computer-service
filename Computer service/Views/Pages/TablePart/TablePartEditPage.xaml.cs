@@ -17,6 +17,7 @@ namespace Computer_service.Views.Pages.TablePart1
             ServicesDataGrid.Visibility = System.Windows.Visibility.Collapsed;
             ButtonAdd.Visibility = System.Windows.Visibility.Collapsed;
             ButtonRemove.Visibility = System.Windows.Visibility.Collapsed;
+            ServiceStackPanel.Visibility = System.Windows.Visibility.Collapsed;
             LoadData();
         }
 

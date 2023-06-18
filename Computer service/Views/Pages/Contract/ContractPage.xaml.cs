@@ -1,4 +1,5 @@
 ﻿using Computer_service.Models;
+using Computer_service.Views.Pages.Services;
 using Computer_service.Views.Pages.TablePart1;
 using Computer_service.Views.Pages.Technic1;
 using System;
@@ -124,6 +125,12 @@ namespace Computer_service.Views.Pages.Contract1
         {
             if (UIHelper.GetConfirm("выйти из аккаунта"))
                 NavigationService.Navigate(new AuthorizationPage());
+        }
+
+        private void ButtonService_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ServicePage());
+
         }
     }
 }

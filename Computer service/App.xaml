@@ -4,5 +4,8 @@
              xmlns:local="clr-namespace:Computer_service"
              StartupUri="/Views/Windows/MainWindow.xaml">
     <Application.Resources>
+        <Style TargetType="TextBlock" x:Key="CheckTextBlock">
+            <Setter Property="FontFamily" Value="Arial"/>
+        </Style>
     </Application.Resources>
 </Application>

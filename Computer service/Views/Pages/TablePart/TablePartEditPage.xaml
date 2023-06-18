@@ -46,7 +46,8 @@
                           DisplayMemberPath="FullInfo"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
-                        Margin="0 0 0 10">
+                        Margin="0 0 0 10"
+                        x:Name="ServiceStackPanel">
                 <TextBlock Text="Услуга"
                            Margin="0 0 25 0"
                            Foreground="White"

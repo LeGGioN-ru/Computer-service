@@ -65,6 +65,12 @@
             <Button Background="White" 
                     Height="35"
                     Margin="10 0 0 0"
+                    Click="ButtonService_Click">
+                <Image Source="\Images\service.png"/>
+            </Button>
+            <Button Background="White" 
+                    Height="35"
+                    Margin="10 0 0 0"
                     Click="Button_Click_4">
                 <Image Source="\Images\x-mark.png"/>
             </Button>

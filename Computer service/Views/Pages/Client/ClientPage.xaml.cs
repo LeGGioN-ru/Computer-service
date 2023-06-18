@@ -1,6 +1,7 @@
 ﻿using Computer_service.Models;
 using Computer_service.Views.Pages.Client1;
 using Computer_service.Views.Pages.Contract1;
+using Computer_service.Views.Pages.Services;
 using Computer_service.Views.Pages.TablePart1;
 using Computer_service.Views.Pages.Technic1;
 using System.Collections.Generic;
@@ -105,6 +106,20 @@ namespace Computer_service.Views.Pages
         private void RemoveTableParts(Client client)
         {
             List<Table_part> removeTableParts = App.Context.Table_part.Where(x => x.Contract.Id_Client == client.Id_Client).ToList();
+            List<TB_Services> services = App.Context.TB_Services.ToList();
+
+            for (int i = 0; i < services.Count; i++)
+            {
+                for (int j = 0; j < removeTableParts.Count; j++)
+                {
+                    if (services[i].Entry_number == removeTableParts[j].Entry_number)
+                    {
+                        App.Context.TB_Services.Remove(services[i]);
+                        App.Context.SaveChanges();
+                    }
+                }
+            }
+
 
             App.Context.Table_part.RemoveRange(removeTableParts);
             App.Context.SaveChanges();
@@ -132,6 +147,12 @@ namespace Computer_service.Views.Pages
         {
             if (UIHelper.GetConfirm("выйти из аккаунта"))
                 NavigationService.Navigate(new AuthorizationPage());
+        }
+
+        private void ButtonService_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ServicePage());
+
         }
     }
 }
