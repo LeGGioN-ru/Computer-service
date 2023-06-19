@@ -1,0 +1,84 @@
+﻿<Window x:Class="Computer_service.Views.Windows.SmetaWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Computer_service.Views.Windows"
+        mc:Ignorable="d"
+        Title="SmetaWindow" Height="450" Width="800">
+    <Grid>
+        <StackPanel>
+            <StackPanel HorizontalAlignment="Right"
+                        Orientation="Vertical">
+                <TextBlock Style="{StaticResource CheckTextBlock}"
+                       Text="Утверждаю_____"
+                       Margin="0 10 30 0"/>
+                <TextBlock Style="{StaticResource CheckTextBlock}"
+                       Text="Сотрудник мастерской"
+                       Margin="0 10 30 0"/>
+                <TextBlock Style="{StaticResource CheckTextBlock}"
+                       Text=""
+                       Margin="0 0 30 0"
+                           x:Name="TextBlockEmployee0"/>
+            </StackPanel>
+            <TextBlock Text="Смета ремонта техники"
+                       x:Name="TextBlockCheck"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Margin="0 30 0 0"
+                       FontSize="15"
+                       Style="{StaticResource CheckTextBlock}"/>
+            <DataGrid Margin="30 25 30 0" FontFamily="Arial"
+                      x:Name="DataGridServices"
+                      AutoGenerateColumns="False"
+                      CanUserAddRows="False"
+                      IsReadOnly="True"
+                      MaxHeight="175">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Наименование услуги"
+                                        Width="*"
+                                        Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="Количество"
+                                        Width="*"
+                                        Binding="{Binding Amount}"/>
+                    <DataGridTextColumn Header="Цена"
+                                        Width="*"
+                                        Binding="{Binding Price}"/>
+                    <DataGridTextColumn Header="Сумма"
+                                        Width="*"
+                                        Binding="{Binding Sum}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Vertical"
+                        Margin="30 20 0 0">
+                    <TextBlock 
+                       Style="{StaticResource CheckTextBlock}"
+                       Text="Сотрудник"
+                    Margin="0 0 200 0"/>
+                    <TextBlock 
+                       Style="{StaticResource CheckTextBlock}"
+                        Text="Клиент"
+                    Margin="0 0 200 0"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical"
+                        Margin="30 10 0 0">
+                    <TextBlock Text="___________"/>
+                    <TextBlock Text="___________"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical"
+                        Margin="30 10 0 0">
+                    <TextBlock x:Name="TextBlockEmployee1"/>
+                    <TextBlock x:Name="TextBlockClient1"/>
+                </StackPanel>
+            </StackPanel>
+            <Button HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Content="Печать"
+                    Width="100"
+                    Height="25"
+                    Margin="0 20 0 0" Click="ButtonPrint_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

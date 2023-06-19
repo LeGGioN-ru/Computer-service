@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Computer_service.Models
+namespace Computer_service.Views
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ComputerServiceDBEntities : DbContext
+    public partial class ComputerServiceAAAEntities : DbContext
     {
-        public ComputerServiceDBEntities()
-            : base("name=ComputerServiceDBEntities")
+        public ComputerServiceAAAEntities()
+            : base("name=ComputerServiceAAAEntities")
         {
         }
     
@@ -35,9 +35,10 @@ namespace Computer_service.Models
         public virtual DbSet<PSU> PSU { get; set; }
         public virtual DbSet<RAM> RAM { get; set; }
         public virtual DbSet<Service> Service { get; set; }
+        public virtual DbSet<Table_part> Table_part { get; set; }
         public virtual DbSet<TB_Services> TB_Services { get; set; }
         public virtual DbSet<Technic> Technic { get; set; }
         public virtual DbSet<Technic_type> Technic_type { get; set; }
-        public virtual DbSet<Table_part> Table_part { get; set; }
+        public virtual DbSet<Organization> Organization { get; set; }
     }
 }

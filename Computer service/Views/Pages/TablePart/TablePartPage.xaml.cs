@@ -2,6 +2,7 @@
 using Computer_service.Views.Pages.Contract1;
 using Computer_service.Views.Pages.Services;
 using Computer_service.Views.Pages.Technic1;
+using Computer_service.Views.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -136,7 +137,47 @@ namespace Computer_service.Views.Pages.TablePart1
         private void ButtonService_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new ServicePage());
+        }
 
+        private void TablePartsDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (TablePartsDataGrid.SelectedItem is Table_part table_Part)
+            {
+                if (table_Part.Table_part_is_aprove)
+                {
+                    ButtonApprove.Visibility = Visibility.Collapsed;
+                    ButtonSmeta.Visibility = Visibility.Collapsed;
+                    ButtonCheck.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    ButtonApprove.Visibility = Visibility.Visible;
+                    ButtonSmeta.Visibility = Visibility.Visible;
+                    ButtonCheck.Visibility = Visibility.Collapsed;
+                }
+            }
+        }
+
+        private void ButtonApprove_Click(object sender, RoutedEventArgs e)
+        {
+            if (TablePartsDataGrid.SelectedItem is Table_part table_Part)
+            {
+                table_Part.Table_part_is_aprove = true;
+                UpdateDataGrid();
+                ButtonApprove.Visibility = Visibility.Collapsed;
+                ButtonSmeta.Visibility = Visibility.Collapsed;
+                ButtonCheck.Visibility = Visibility.Visible;
+                App.Context.SaveChanges();
+            }
+        }
+
+        private void ButtonSmeta_Click(object sender, RoutedEventArgs e)
+        {
+            if (TablePartsDataGrid.SelectedItem is Table_part table_Part)
+            {
+                SmetaWindow window = new SmetaWindow(table_Part);
+                window.Show();
+            }
         }
     }
 }

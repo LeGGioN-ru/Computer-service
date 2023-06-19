@@ -12,37 +12,39 @@
 namespace Computer_service.Models
 {
 
-using System;
+    using System;
     using System.Collections.Generic;
-    
-public partial class Table_part
-{
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public Table_part()
+    public partial class Table_part
     {
 
-        this.TB_Services = new HashSet<TB_Services>();
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Table_part()
+        {
+
+            this.TB_Services = new HashSet<TB_Services>();
+
+        }
+
+
+        public int Entry_number { get; set; }
+
+        public int Technic_id { get; set; }
+
+        public int Contract_id { get; set; }
+
+        public bool Table_part_is_aprove { get; set; }
+
+
+
+        public virtual Contract Contract { get; set; }
+
+        public virtual Technic Technic { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+        public virtual ICollection<TB_Services> TB_Services { get; set; }
 
     }
-
-
-    public int Entry_number { get; set; }
-
-    public int Technic_id { get; set; }
-
-    public int Contract_id { get; set; }
-
-
-
-    public virtual Contract Contract { get; set; }
-
-    public virtual Technic Technic { get; set; }
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-
-    public virtual ICollection<TB_Services> TB_Services { get; set; }
-
-}
 
 }

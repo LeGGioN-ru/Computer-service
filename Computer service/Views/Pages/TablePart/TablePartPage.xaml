@@ -79,11 +79,13 @@
                   x:Name="TablePartsDataGrid"
                   IsReadOnly="True"
                   CanUserAddRows="False"
+                  SelectionChanged="TablePartsDataGrid_SelectionChanged"
                   AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="*" Header="Техника" Foreground="Black" Binding="{Binding Technic.Technic_name}"/>
                 <DataGridTextColumn Width="*" Header="Дата контракта" Foreground="Black" Binding="{Binding Contract.Contract_date}"/>
                 <DataGridTextColumn Width="*" Header="Количество услуг" Foreground="Black" Binding="{Binding CountServices}"/>
+                <DataGridTextColumn Width="*" Header="Подтверждено?" Foreground="Black" Binding="{Binding Table_part_is_aprove}"/>
             </DataGrid.Columns>
         </DataGrid>
 
@@ -91,27 +93,45 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center">
             <Button Background="White" Height="35"
-                    Width="150"
+                    Width="100"
                     Margin="10 0 10 0" Click="ButtonAdd_Click">
                 <TextBlock Text="Добавить"
                            Foreground="Black"/>
             </Button>
             <Button Background="White" Height="35"
-                    Width="150"
+                    Width="100"
                     Margin="10 0 10 0" Click="ButtonRemove_Click">
                 <TextBlock Text="Удалить"
                            Foreground="Black"/>
             </Button>
             <Button Background="White" Height="35"
-                    Width="150"
+                    Width="100"
                     Margin="10 0 10 0" Click="ButtonEdit_Click">
                 <TextBlock Text="Изменить"
                            Foreground="Black"/>
             </Button>
             <Button Background="White" Height="35"
-                    Width="150"
+                    x:Name="ButtonCheck"
+                    Visibility="Collapsed"
+                    Width="100"
                     Margin="10 0 10 0" Click="ButtonCheck_Click">
                 <TextBlock Text="Чек"
+                           Foreground="Black"/>
+            </Button>
+            <Button Background="White" Height="35"
+                    x:Name="ButtonSmeta"
+                    Visibility="Visible"
+                    Width="100"
+                    Margin="10 0 10 0" Click="ButtonSmeta_Click">
+                <TextBlock Text="Смета"
+                           Foreground="Black"/>
+            </Button>
+            <Button Background="White" Height="35"
+                    x:Name="ButtonApprove"
+                    Visibility="Visible"
+                    Width="125"
+                    Margin="10 0 10 0" Click="ButtonApprove_Click">
+                <TextBlock Text="Подтвердить смету"
                            Foreground="Black"/>
             </Button>
         </StackPanel>
