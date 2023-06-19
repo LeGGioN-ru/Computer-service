@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Computer_service"
         mc:Ignorable="d"
-        Title="WindowCheckCheck" Height="450" Width="670">
+        Title="Чек" Height="450" Width="670">
     <Grid>
         <StackPanel>
             <TextBlock Text="ТОВАРНЫЙ ЧЕК № ПК002968 от 12.11.2016"
@@ -31,7 +31,7 @@
                       AutoGenerateColumns="False"
                       CanUserAddRows="False"
                       IsReadOnly="True"
-                      MaxHeight="175">
+                      MaxHeight="120">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Наименование услуги"
                                         Width="*"
@@ -55,6 +55,11 @@
                        Margin="30 0 30 0"
                        Style="{StaticResource CheckTextBlock}"
                        HorizontalAlignment="Right"/>
+            <Image HorizontalAlignment="Left"
+                   Margin="30 0 0 0"
+                   Height="120"
+                   Width="120"
+                   x:Name="QrCode"/>
             <Button HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     Content="Печать"

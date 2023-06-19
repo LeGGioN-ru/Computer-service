@@ -24,6 +24,7 @@ namespace Computer_service.Views.Pages.Services
             TextBoxDescription.Text = service.Service_description;
             TextBoxName.Text = service.Service_name;
             TextBoxPrice.Text = service.Service_price.ToString();
+            ButtonAddEdit.Text = "Изменить";
         }
 
         private void ButtonAddEdit_Click(object sender, RoutedEventArgs e)

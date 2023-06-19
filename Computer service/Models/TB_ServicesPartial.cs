@@ -10,7 +10,7 @@ namespace Computer_service.Models
     {
         public override string ToString()
         {
-            return $"Наименование услуги: {Service.Service_name}. Цена: {Service.Service_price}.";
+            return $"{Service.Service_name} {Service.Service_price}₽";
         }
     }
 }
