@@ -85,7 +85,7 @@
                 <DataGridTextColumn Width="*" Header="Техника" Foreground="Black" Binding="{Binding Technic.Technic_name}"/>
                 <DataGridTextColumn Width="*" Header="Дата контракта" Foreground="Black" Binding="{Binding Contract.Contract_date}"/>
                 <DataGridTextColumn Width="*" Header="Количество услуг" Foreground="Black" Binding="{Binding CountServices}"/>
-                <DataGridTextColumn Width="*" Header="Подтверждено?" Foreground="Black" Binding="{Binding Table_part_is_aprove}"/>
+                <DataGridTextColumn Width="*" Header="Подтверждено?" Foreground="Black" Binding="{Binding IsApprove}"/>
             </DataGrid.Columns>
         </DataGrid>
 

@@ -6,6 +6,7 @@ namespace Computer_service.Models
     {
         public int CountServices => TB_Services.Count;
         public int SumServices => TB_Services.Sum(x => x.Service.Service_price);
+        public string IsApprove => Table_part_is_aprove ? "Да" : "Нет";
 
         public override string ToString()
         {
