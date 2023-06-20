@@ -1,7 +1,12 @@
 ﻿using Computer_service.Models;
+using Microsoft.Office.Interop.Word;
 using Microsoft.Win32;
+using QRCoder;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +17,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using Window = System.Windows.Window;
 using Word = Microsoft.Office.Interop.Word;
 
 namespace Computer_service.Views.Windows
@@ -21,6 +26,7 @@ namespace Computer_service.Views.Windows
     {
         private Table_part _tablePart;
         private List<Check> _list;
+        private BitmapImage _image;
 
         public SmetaWindow(Table_part table_Part)
         {
@@ -41,6 +47,51 @@ namespace Computer_service.Views.Windows
             TextBlockEmployee0.Text = $"{table_Part.Contract.Employee.Employee_surname} {table_Part.Contract.Employee.Employee_name} {table_Part.Contract.Employee.Employee_patronymic}";
             TextBlockEmployee1.Text = $"{table_Part.Contract.Employee.Employee_surname} {table_Part.Contract.Employee.Employee_name} {table_Part.Contract.Employee.Employee_patronymic}";
             TextBlockClient1.Text = $"{table_Part.Contract.Client.FullNameClient}";
+
+            try
+            {
+                if (_tablePart.TB_Services.Count > 7)
+                {
+                    MessageBox.Show("Слишком много услуг, печать qr кода не возможна");
+                }
+                else
+                {
+                    Bitmap qrCodeImage = GenerateQRCode($"{table_Part}");
+                    _image = ConvertBitmapToBitmapImage(qrCodeImage);
+                    QrCode.Source = _image;
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        private Bitmap GenerateQRCode(string content)
+        {
+            QRCodeGenerator qrGenerator = new QRCodeGenerator();
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode(content, QRCodeGenerator.ECCLevel.Q);
+            QRCode qrCode = new QRCode(qrCodeData);
+            Bitmap qrCodeImage = qrCode.GetGraphic(80);
+
+            return qrCodeImage;
+        }
+
+        private BitmapImage ConvertBitmapToBitmapImage(Bitmap bitmap)
+        {
+            BitmapImage bitmapImage = new BitmapImage();
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                bitmap.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Png);
+                memoryStream.Position = 0;
+                bitmapImage.BeginInit();
+                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                bitmapImage.StreamSource = memoryStream;
+                bitmapImage.EndInit();
+            }
+            return bitmapImage;
         }
 
         private void ButtonPrint_Click(object sender, RoutedEventArgs e)
@@ -73,6 +124,38 @@ namespace Computer_service.Views.Windows
                 {
                     Word.Bookmark bookmark2 = bookmarks["Employee2"];
                     bookmark2.Range.Text = $"{_tablePart.Contract.Employee.FullName}";
+                }
+
+                if (_image != null)
+                {
+                    // Преобразование BitmapImage в Bitmap
+                    Bitmap bitmap;
+                    using (MemoryStream stream = new MemoryStream())
+                    {
+                        BitmapEncoder encoder = new BmpBitmapEncoder();
+                        encoder.Frames.Add(BitmapFrame.Create(_image));
+                        encoder.Save(stream);
+                        bitmap = new Bitmap(stream);
+                    }
+
+                    int newWidth = 150; // Новая ширина изображения
+                    int newHeight = 150; // Новая высота изображения
+                    Bitmap resizedBitmap = new Bitmap(bitmap, newWidth, newHeight);
+
+                    // Создание временного файла для сохранения уменьшенного изображения в формате PNG
+                    string tempFilePath = Path.GetTempFileName();
+                    tempFilePath = Path.ChangeExtension(tempFilePath, ".png");
+
+                    // Сохранение уменьшенного изображения в формате PNG
+                    resizedBitmap.Save(tempFilePath, ImageFormat.Png);
+                    if (bookmarks.Exists("QRCODE"))
+                    {
+                        Bookmark bookmark = bookmarks["QRCODE"];
+
+                        bookmark.Range.InlineShapes.AddPicture(tempFilePath);
+                    }
+
+                    File.Delete(tempFilePath);
                 }
 
                 if (bookmarks.Exists("Services"))
