@@ -37,36 +37,36 @@
                       Height="25"
                       x:Name="SearchTextBox"
                      Margin="10 0 10 0" TextChanged="SearchTextBox_TextChanged"/>
-            <Button Background="White" 
+            <Button Background="BurlyWood" 
                     Height="35"
                     Click="Button_Click">
                 <Image Source="\Images\wrench.png"/>
             </Button>
-            <Button Background="White" 
+            <Button Background="BurlyWood" 
                     Height="35"
                     Margin="10 0 0 0"
                     Click="Button_Click_1">
                 <Image Source="\Images\costumer.png"/>
             </Button>
-            <Button Background="White" 
+            <Button Background="BurlyWood" 
                     Height="35"
                     Margin="10 0 0 0"
                     Click="Button_Click_2">
                 <Image Source="\Images\contract.png"/>
             </Button>
-            <Button Background="White" 
+            <Button Background="BurlyWood" 
                     Height="35"
                     Margin="10 0 0 0"
                     Click="Button_Click_3">
                 <Image Source="\Images\shopping-bag.png"/>
             </Button>
-            <Button Background="White" 
+            <Button Background="BurlyWood" 
                     Height="35"
                     Margin="10 0 0 0"
                     Click="ButtonService_Click">
                 <Image Source="\Images\service.png"/>
             </Button>
-            <Button Background="White" 
+            <Button Background="BurlyWood" 
                     Height="35"
                     Margin="10 0 0 0"
                     Click="Button_Click_4">
@@ -92,25 +92,25 @@
         <StackPanel Grid.Row="2" Orientation="Horizontal"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center">
-            <Button Background="White" Height="35"
+            <Button Background="BlanchedAlmond" Height="35"
                     Width="100"
                     Margin="10 0 10 0" Click="ButtonAdd_Click">
                 <TextBlock Text="Добавить"
                            Foreground="Black"/>
             </Button>
-            <Button Background="White" Height="35"
+            <Button Background="BlanchedAlmond" Height="35"
                     Width="100"
                     Margin="10 0 10 0" Click="ButtonRemove_Click">
                 <TextBlock Text="Удалить"
                            Foreground="Black"/>
             </Button>
-            <Button Background="White" Height="35"
+            <Button Background="BlanchedAlmond" Height="35"
                     Width="100"
                     Margin="10 0 10 0" Click="ButtonEdit_Click">
                 <TextBlock Text="Изменить"
                            Foreground="Black"/>
             </Button>
-            <Button Background="White" Height="35"
+            <Button Background="BlanchedAlmond" Height="35"
                     x:Name="ButtonCheck"
                     Visibility="Collapsed"
                     Width="100"
@@ -118,7 +118,7 @@
                 <TextBlock Text="Чек"
                            Foreground="Black"/>
             </Button>
-            <Button Background="White" Height="35"
+            <Button Background="BlanchedAlmond" Height="35"
                     x:Name="ButtonSmeta"
                     Visibility="Visible"
                     Width="100"
@@ -126,7 +126,7 @@
                 <TextBlock Text="Смета"
                            Foreground="Black"/>
             </Button>
-            <Button Background="White" Height="35"
+            <Button Background="BlanchedAlmond" Height="35"
                     x:Name="ButtonApprove"
                     Visibility="Visible"
                     Width="125"
