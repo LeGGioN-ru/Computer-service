@@ -16,8 +16,8 @@
         </Grid.RowDefinitions>
         <Grid.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                <GradientStop Color="#1b1b1b" Offset="1" />
-                <GradientStop Color="#212121" Offset="0" />
+                <GradientStop Color="BlanchedAlmond" Offset="1" />
+                <GradientStop Color="BurlyWood" Offset="0" />
             </LinearGradientBrush>
         </Grid.Background>
 
