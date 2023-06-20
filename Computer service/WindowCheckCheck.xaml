@@ -8,7 +8,7 @@
         Title="Чек" Height="450" Width="670">
     <Grid>
         <StackPanel>
-            <TextBlock Text="ТОВАРНЫЙ ЧЕК № ПК002968 от 12.11.2016"
+            <TextBlock Text="ТОВАРНЫЙ ЧЕК №  от 12.11.2016"
                        x:Name="TextBlockCheck"
                        FontWeight="Bold"
                        HorizontalAlignment="Center"

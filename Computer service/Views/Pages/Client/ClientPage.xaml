@@ -15,8 +15,8 @@
         </Grid.RowDefinitions>
         <Grid.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                <GradientStop Color="#1b1b1b" Offset="1" />
-                <GradientStop Color="#212121" Offset="0" />
+                <GradientStop Color="BlanchedAlmond" Offset="1" />
+                <GradientStop Color="BurlyWood" Offset="0" />
             </LinearGradientBrush>
         </Grid.Background>
 
@@ -39,36 +39,36 @@
                       x:Name="SearchTextBox"
                      Margin="10 0 10 0" TextChanged="SearchTextBox_TextChanged"/>
 
-            <Button Background="White" 
+            <Button Background="BlanchedAlmond" 
                     Height="35"
                     Click="ButtonTecnic_Click">
                 <Image Source="\Images\wrench.png"/>
             </Button>
-            <Button Background="White" 
+            <Button Background="BlanchedAlmond" 
                     Height="35"
                     Margin="10 0 0 0"
                     Click="ButtonClient_Click">
                 <Image Source="\Images\costumer.png"/>
             </Button>
-            <Button Background="White" 
+            <Button Background="BlanchedAlmond" 
                     Height="35"
                     Margin="10 0 0 0"
                     Click="ButtonContract_Click">
                 <Image Source="\Images\contract.png"/>
             </Button>
-            <Button Background="White" 
+            <Button Background="BlanchedAlmond" 
                     Height="35"
                     Margin="10 0 0 0"
                     Click="ButtonTablePart_Click">
                 <Image Source="\Images\shopping-bag.png"/>
             </Button>
-            <Button Background="White" 
+            <Button Background="BlanchedAlmond" 
                     Height="35"
                     Margin="10 0 0 0"
                     Click="ButtonService_Click">
                 <Image Source="\Images\service.png"/>
             </Button>
-            <Button Background="White" 
+            <Button Background="BlanchedAlmond" 
                     Height="35"
                     Margin="10 0 0 0"
                     Click="Button_Click_4">
@@ -94,19 +94,19 @@
         <StackPanel Grid.Row="2" Orientation="Horizontal"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center">
-            <Button Background="White" Height="35"
+            <Button Background="BlanchedAlmond" Height="35"
                     Width="200"
                     Margin="10 0 10 0" Click="ButtonAdd_Click">
                 <TextBlock Text="Добавить"
                            Foreground="Black"/>
             </Button>
-            <Button Background="White" Height="35"
+            <Button Background="BlanchedAlmond" Height="35"
                     Width="200"
                     Margin="10 0 10 0" Click="ButtonRemove_Click">
                 <TextBlock Text="Удалить"
                            Foreground="Black"/>
             </Button>
-            <Button Background="White" Height="35"
+            <Button Background="BlanchedAlmond" Height="35"
                     Width="200"
                     Margin="10 0 10 0" Click="ButtonEdit_Click">
                 <TextBlock Text="Изменить"
