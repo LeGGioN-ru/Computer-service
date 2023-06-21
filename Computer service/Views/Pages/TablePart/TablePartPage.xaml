@@ -123,7 +123,7 @@
                     Visibility="Visible"
                     Width="100"
                     Margin="10 0 10 0" Click="ButtonSmeta_Click">
-                <TextBlock Text="Смета"
+                <TextBlock Text="Спецификация"
                            Foreground="Black"/>
             </Button>
             <Button Background="BlanchedAlmond" Height="35"
@@ -131,7 +131,7 @@
                     Visibility="Visible"
                     Width="125"
                     Margin="10 0 10 0" Click="ButtonApprove_Click">
-                <TextBlock Text="Подтвердить смету"
+                <TextBlock Text="Подтвердить спецификацию"
                            Foreground="Black"/>
             </Button>
         </StackPanel>
