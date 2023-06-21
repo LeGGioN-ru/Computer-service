@@ -47,6 +47,7 @@ namespace Computer_service.Views.Windows
             TextBlockEmployee0.Text = $"{table_Part.Contract.Employee.Employee_surname} {table_Part.Contract.Employee.Employee_name} {table_Part.Contract.Employee.Employee_patronymic}";
             TextBlockEmployee1.Text = $"{table_Part.Contract.Employee.Employee_surname} {table_Part.Contract.Employee.Employee_name} {table_Part.Contract.Employee.Employee_patronymic}";
             TextBlockClient1.Text = $"{table_Part.Contract.Client.FullNameClient}";
+            FinalSumTextBlock.Text = "Итог: " + table_Part.SumServices.ToString() + "₽";
 
             try
             {
@@ -124,6 +125,12 @@ namespace Computer_service.Views.Windows
                 {
                     Word.Bookmark bookmark2 = bookmarks["Employee2"];
                     bookmark2.Range.Text = $"{_tablePart.Contract.Employee.FullName}";
+                }
+
+                if (bookmarks.Exists("SumCheck"))
+                {
+                    Word.Bookmark bookmark2 = bookmarks["SumCheck"];
+                    bookmark2.Range.Text = $"{_tablePart.SumServices}₽";
                 }
 
                 if (_image != null)

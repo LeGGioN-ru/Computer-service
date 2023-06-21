@@ -39,6 +39,7 @@ namespace Computer_service
             }
 
             DataGridServices.ItemsSource = _list;
+            FinalSumTextBlock.Text = "Итог: " + table_Part.SumServices.ToString() + "₽";
             TextBlockCheck.Text = $"ТОВАРНЫЙ ЧЕК № ПК{_tablePart.Entry_number} от {_tablePart.Contract.Contract_date.ToShortDateString()}";
 
             try
@@ -112,6 +113,12 @@ namespace Computer_service
                     bookmark1.Range.Text = $"{_tablePart.Entry_number}";
                 }
 
+                if (bookmarks.Exists("SumCheck"))
+                {
+                    Word.Bookmark bookmark2 = bookmarks["SumCheck"];
+                    bookmark2.Range.Text = $"{_tablePart.SumServices}₽";
+                }
+
                 if (bookmarks.Exists("Date"))
                 {
                     Bookmark bookmark2 = bookmarks["Date"];
@@ -149,7 +156,7 @@ namespace Computer_service
 
                     File.Delete(tempFilePath);
                 }
-                
+
                 if (bookmarks.Exists("TableServices"))
                 {
                     Bookmark tableBookmark = bookmarks["TableServices"];
@@ -209,7 +216,7 @@ namespace Computer_service
             }
         }
 
-   
+
     }
 }
 

@@ -50,6 +50,12 @@
             <TextBlock Text="Кассовый чек не выдаётся на основании Федерального закона РФ 162-ФЗ от 17.07.2009"
                        Margin="30 5 30 0"
                        Style="{StaticResource CheckTextBlock}"/>
+            <TextBlock Text="Итог:"
+                       x:Name="FinalSumTextBlock"
+                       FontWeight="Bold"
+                       Margin="30 5 30 10"
+                       Style="{StaticResource CheckTextBlock}"
+                       HorizontalAlignment="Left"/>
             <TextBlock Text="Подпись _________"
                        FontWeight="Bold"
                        Margin="30 0 30 0"
