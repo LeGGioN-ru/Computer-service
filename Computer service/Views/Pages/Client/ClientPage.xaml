@@ -39,36 +39,36 @@
                       x:Name="SearchTextBox"
                      Margin="10 0 10 0" TextChanged="SearchTextBox_TextChanged"/>
 
-            <Button Background="BlanchedAlmond" 
+            <Button Background="BurlyWood" 
                     Height="35"
                     Click="ButtonTecnic_Click">
                 <Image Source="\Images\wrench.png"/>
             </Button>
-            <Button Background="BlanchedAlmond" 
+            <Button Background="BurlyWood" 
                     Height="35"
                     Margin="10 0 0 0"
                     Click="ButtonClient_Click">
                 <Image Source="\Images\costumer.png"/>
             </Button>
-            <Button Background="BlanchedAlmond" 
+            <Button Background="BurlyWood" 
                     Height="35"
                     Margin="10 0 0 0"
                     Click="ButtonContract_Click">
                 <Image Source="\Images\contract.png"/>
             </Button>
-            <Button Background="BlanchedAlmond" 
+            <Button Background="BurlyWood" 
                     Height="35"
                     Margin="10 0 0 0"
                     Click="ButtonTablePart_Click">
                 <Image Source="\Images\shopping-bag.png"/>
             </Button>
-            <Button Background="BlanchedAlmond" 
+            <Button Background="BurlyWood" 
                     Height="35"
                     Margin="10 0 0 0"
                     Click="ButtonService_Click">
                 <Image Source="\Images\service.png"/>
             </Button>
-            <Button Background="BlanchedAlmond" 
+            <Button Background="BurlyWood" 
                     Height="35"
                     Margin="10 0 0 0"
                     Click="Button_Click_4">

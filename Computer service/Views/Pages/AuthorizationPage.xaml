@@ -60,7 +60,7 @@
                     </CheckBox.LayoutTransform>
                 </CheckBox>
 
-                <Button Background="White" 
+                <Button Background="BurlyWood" 
                     Margin="0 10 0 0" Click="ButtonEnter_Click">
                     <TextBlock Text="Войти" 
                            Foreground="Black"
